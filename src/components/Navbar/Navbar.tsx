@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 const Navbar = () => {
     return (
         <div className="bg-white">
-            <div className="flex justify-between items-center py-4 border-b-2 border-grey-300 px-16">
+            <div className="flex justify-between items-center py-6 border-b-2 border-grey-300 px-16">
                 <Logo />
                 <Header />
             </div>
