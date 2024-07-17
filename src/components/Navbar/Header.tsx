@@ -1,12 +1,15 @@
 import { Button, ConfigProviderProps } from "antd";
 import { FiShoppingCart } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 type SizeType = ConfigProviderProps["componentSize"];
 const Header = () => {
     return (
         <div className="flex space-x-6 items-center ">
             <div>
-                <FiShoppingCart className="text-3xl font-bold " />
+                <Link to={`/cart`}>
+                    <FiShoppingCart className="text-3xl font-bold " />
+                </Link>
             </div>
             <div>
                 <Button
