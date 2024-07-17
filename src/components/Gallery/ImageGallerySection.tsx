@@ -1,5 +1,3 @@
-import { Gallery } from "react-grid-gallery";
-
 const images = [
     {
         src: "https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=600",
