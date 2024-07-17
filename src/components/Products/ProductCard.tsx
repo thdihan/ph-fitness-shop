@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import trademill from "../../assets/trademill.jpg";
+import { Button } from "antd";
 const ProductCard = () => {
     return (
         <div className="bg-white px-4 py-6 min-h-[300px] space-y-8 ">
@@ -16,6 +17,9 @@ const ProductCard = () => {
                 </Link>
                 <p>Stock: 5</p>
                 <p className="text-lg text-[#FF5252] font-semibold">$10</p>
+                <Button className="w-full bg-[#FF5252] text-white font-semibold">
+                    View Details
+                </Button>
             </div>
         </div>
     );
