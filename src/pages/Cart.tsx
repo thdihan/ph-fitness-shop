@@ -2,7 +2,9 @@ import { TbShoppingCartFilled } from "react-icons/tb";
 import CartTableRow from "../components/Cart/CartTableRow";
 import { Button } from "antd";
 import { SizeType } from "../types";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
+    const navitate = useNavigate();
     return (
         <div className="px-16 py-6">
             <div>
@@ -62,6 +64,9 @@ const Cart = () => {
                             className="bg-[#FF5252] hover:bg-[#fff] hover:border-[#FF5252] hover:text-[#FF5252] border-[#FF5252] text-white font-normal"
                             size={"large" as SizeType}
                             danger
+                            onClick={() => {
+                                navitate("/checkout");
+                            }}
                         >
                             Checkout
                         </Button>
