@@ -59,6 +59,34 @@ const Checkout = () => {
                             className="border-2 border-gray-400 w-full p-2 rounded-md"
                         ></textarea>
                     </div>
+                    <div className="flex flex-col">
+                        <label htmlFor="payment" className="">
+                            Payment Method:
+                        </label>
+                        <div>
+                            <div className="flex items-center space-x-2">
+                                <input
+                                    type="radio"
+                                    name="payment"
+                                    id="payment"
+                                    className="border-2 border-gray-400 p-2 rounded-md"
+                                />
+                                <label htmlFor="payment">
+                                    Cash On Delivery
+                                </label>
+                            </div>
+
+                            <div className="flex items-center space-x-2">
+                                <input
+                                    type="radio"
+                                    name="payment"
+                                    id="payment"
+                                    className="border-2 border-gray-400 p-2 rounded-md"
+                                />
+                                <label htmlFor="payment">Stripe</label>
+                            </div>
+                        </div>
+                    </div>
                 </form>
 
                 <div className=" flex-1">
