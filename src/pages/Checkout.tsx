@@ -89,7 +89,7 @@ const Checkout = () => {
                     </div>
                 </form>
 
-                <div className=" flex-1">
+                <div className="mt-6 flex-1">
                     <div>
                         <h2 className="text-xl  bg-gray-400 p-3">
                             Cart Summery
