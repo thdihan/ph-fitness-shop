@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Calendar from "react-calendar";
+import { navItems } from "../Navbar/navItems";
+import { Link } from "react-router-dom";
 
 const navigation = [
     { name: "Home", href: "#", current: true, subMenu: [] },
@@ -50,10 +52,12 @@ const Footer = () => {
     const [value, setValue] = useState(new Date());
     return (
         <div className="bg-black">
-            <div className="container mx-auto flex w-full flex-col items-center space-y-10 p-10 text-center lg:max-w-[1200px] lg:flex-row lg:justify-between lg:space-x-16 lg:space-y-0">
-                <div className="flex-1 space-y-5 text-white text-left">
-                    <h2 className="text-2xl font-semibold">Fitness Shop</h2>
-                    <address className="text-left">
+            <div className="container mx-auto flex w-full flex-col lg:items-center space-y-10 p-10 lg:text-left lg:max-w-[1200px] lg:flex-row lg:justify-between lg:space-x-16 lg:space-y-0">
+                <div className="flex-1 space-y-5 text-white text-center">
+                    <h2 className="text-2xl font-semibold lg:text-left">
+                        Fitness Shop
+                    </h2>
+                    <address className="text-center lg:text-left">
                         Apt. 955 118 Abbott Shore, <br /> New Berniece, HI{" "}
                         <br />
                         34986-8246
@@ -61,15 +65,15 @@ const Footer = () => {
                 </div>
 
                 <div className="flex flex-1 justify-center">
-                    <ul className="text-left">
-                        {navigation.map((nav, index) => (
+                    <ul className="text-center">
+                        {navItems.map((nav, index) => (
                             <li key={index}>
-                                <a
-                                    href={nav.href}
+                                <Link
+                                    to={nav?.path}
                                     className="block py-1 text-white"
                                 >
                                     {nav.name}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
