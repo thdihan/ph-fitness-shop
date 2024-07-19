@@ -7,12 +7,12 @@ const Header = () => {
     const navigate = useNavigate();
     return (
         <div className="flex space-x-6 items-center pt-6 lg:pt-0">
-            <div>
+            <div className="w-full">
                 <Link to={`/cart`}>
                     <FiShoppingCart className="text-3xl font-bold " />
                 </Link>
             </div>
-            <div>
+            <div className="w-full">
                 <Button
                     type="primary"
                     className="bg-[#FF5252] hover:bg-[#fff] hover:border-[#FF5252] hover:text-[#FF5252] border-[#FF5252] text-white font-normal"

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const menuItems = [
@@ -35,9 +37,20 @@ const menuItems = [
     },
 ];
 const Navigation = () => {
+    const [navOpen, setNavOpen] = useState(false);
     return (
         <nav className="">
-            <ul className="flex justify-center">
+            <div className="py-2 lg:hidden">
+                <BiMenu
+                    className="text-3xl cursor-pointer"
+                    onClick={() => setNavOpen((prev) => !prev)}
+                />
+            </div>
+            <ul
+                className={`flex justify-center flex-col visible  lg:flex-row z-10 lg:z-0 relative ${
+                    navOpen ? "lg:visible" : "hidden lg:block"
+                }`}
+            >
                 {menuItems.map((item, index) => (
                     <li
                         key={index}
