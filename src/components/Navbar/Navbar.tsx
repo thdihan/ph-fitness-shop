@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 const Navbar = () => {
     return (
         <div className="bg-white">
-            <div className="flex justify-between items-center py-6 border-b-2 border-grey-300 px-16">
+            <div className="flex flex-col lg:flex-row lg:justify-between items-center py-6 border-b-2 border-grey-300 px-16 lg:space-y-5 space-y-0">
                 <Logo />
                 <Header />
             </div>

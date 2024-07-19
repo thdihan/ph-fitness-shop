@@ -6,7 +6,7 @@ type SizeType = ConfigProviderProps["componentSize"];
 const Header = () => {
     const navigate = useNavigate();
     return (
-        <div className="flex space-x-6 items-center ">
+        <div className="flex space-x-6 items-center pt-6 lg:pt-0">
             <div>
                 <Link to={`/cart`}>
                     <FiShoppingCart className="text-3xl font-bold " />
