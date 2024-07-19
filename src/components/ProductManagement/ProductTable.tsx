@@ -1,5 +1,4 @@
-import { BiBasket, BiEdit, BiTrash } from "react-icons/bi";
-import { ButtonPrimary, ButtonSecondary } from "../Buttons/Buttons";
+import { BiEdit, BiTrash } from "react-icons/bi";
 
 const ProductTable = () => {
     return (
