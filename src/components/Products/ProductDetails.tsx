@@ -1,7 +1,26 @@
 import { Button } from "antd";
 import trademill from "../../assets/trademill.jpg";
 import { SizeType } from "../../types";
+import { useAppDispatch } from "../../redux/hooks";
+import { FormEvent } from "react";
+import { addToCart } from "../../redux/features/cart/cartSlice";
 const ProductDetails = () => {
+    const dispatch = useAppDispatch();
+
+    const handleAddToCart = (e: FormEvent) => {
+        e.preventDefault();
+
+        dispatch(
+            addToCart({
+                name: "ABCD",
+                description: "SLKJKLJLVJS",
+                price: 10,
+                stock: 12,
+                category: "unknown",
+                qty: 1,
+            })
+        );
+    };
     return (
         <div className="px-16 flex py-6">
             <div className="flex-1 border-2">
@@ -59,6 +78,7 @@ const ProductDetails = () => {
                             className="bg-[#FF5252] hover:bg-[#fff] hover:border-[#FF5252] hover:text-[#FF5252] border-[#FF5252] text-white font-normal"
                             size={"large" as SizeType}
                             danger
+                            onClick={handleAddToCart}
                         >
                             Add to Cart
                         </Button>

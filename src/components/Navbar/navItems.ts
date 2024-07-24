@@ -13,7 +13,7 @@ export const navItems = [
     },
     {
         name: "Categories",
-        path: "/all-products",
+        path: "#category-section",
     },
     {
         name: "Benefits",

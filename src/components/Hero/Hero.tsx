@@ -16,7 +16,7 @@ const Hero = () => {
                 <img src={heroImg} alt="" />
             </div>
 
-            <div className="relative  w-full">
+            <div id="category-section" className="relative w-full">
                 <div
                     className="absolute top-[45%] -left-4 z-50 bg-[#FF5252] text-white text-xl p-1 rounded-full flex justify-center items-center cursor-pointer"
                     onClick={() => onClickScroll(-1)}

@@ -22,6 +22,7 @@ const Navigation = () => {
                     <li
                         key={index}
                         className="inline-block px-6 py-3 hover:bg-[#FF5252] hover:text-white transition-all"
+                        onClick={() => setNavOpen((prev) => !prev)}
                     >
                         <Link to={item?.path} className="text-md font-medium">
                             {item.name}
