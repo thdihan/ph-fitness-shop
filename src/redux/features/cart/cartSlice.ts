@@ -17,11 +17,16 @@ const cartSlice = createSlice({
         addToCart: (state, action: PayloadAction<TCartProduct>) => {
             state.products.push(action.payload);
         },
+        deleteCart: (state, action: PayloadAction<string>) => {
+            state.products = state.products.filter(
+                (product) => action.payload !== product._id
+            );
+        },
     },
 });
 
 const cartReducer = cartSlice.reducer;
 export default cartReducer;
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, deleteCart } = cartSlice.actions;
 export const getCartProducts = (state: RootState) => state.cart.products;

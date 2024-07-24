@@ -18,6 +18,7 @@ const ProductDetails = () => {
 
         dispatch(
             addToCart({
+                _id: data?.data?._id,
                 name: data?.data?.name,
                 description: data?.data?.description,
                 price: data?.data?.price,
@@ -27,6 +28,7 @@ const ProductDetails = () => {
             })
         );
     };
+
     return (
         <div className="px-4 md:px-8 lg:px-16 flex py-6 flex-col lg:flex-row">
             <div className="flex-1 border-2">

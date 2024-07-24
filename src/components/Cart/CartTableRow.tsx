@@ -1,7 +1,13 @@
 import { RiDeleteBin2Line } from "react-icons/ri";
 import trademill from "../../assets/trademill.jpg";
 import { TCartProduct } from "../../types";
+import { useAppDispatch } from "../../redux/hooks";
+import { deleteCart } from "../../redux/features/cart/cartSlice";
 const CartTableRow = ({ product }: { product: TCartProduct }) => {
+    const dispatch = useAppDispatch();
+    const handleDelete = () => {
+        dispatch(deleteCart(product?._id));
+    };
     return (
         <tr className="text-center border-b-2">
             <td className="p-3 w-[100px]">
@@ -24,7 +30,7 @@ const CartTableRow = ({ product }: { product: TCartProduct }) => {
             </td>
             <td className="p-3 w-[50px]">
                 <div className="text-2xl text-[#FF5252] cursor-pointer">
-                    <RiDeleteBin2Line />
+                    <RiDeleteBin2Line onClick={handleDelete} />
                 </div>
             </td>
         </tr>
