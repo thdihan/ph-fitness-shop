@@ -17,9 +17,11 @@ const ProductCard = () => {
                 </Link>
                 <p>Stock: 5</p>
                 <p className="text-lg text-[#FF5252] font-semibold">$10</p>
-                <Button className="w-full bg-[#FF5252] text-white font-semibold">
-                    View Details
-                </Button>
+                <Link to="/products/669b47d076e44d15082a96a2">
+                    <Button className="w-full bg-[#FF5252] text-white font-semibold">
+                        View Details
+                    </Button>
+                </Link>
             </div>
         </div>
     );

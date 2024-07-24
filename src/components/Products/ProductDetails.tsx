@@ -2,22 +2,28 @@ import { Button } from "antd";
 import trademill from "../../assets/trademill.jpg";
 import { SizeType } from "../../types";
 import { useAppDispatch } from "../../redux/hooks";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import { useParams } from "react-router-dom";
+import { useGetSingleProductQuery } from "../../redux/api/baseApi";
 const ProductDetails = () => {
+    const { id } = useParams();
+    const { data } = useGetSingleProductQuery(id);
+    console.log(data);
     const dispatch = useAppDispatch();
+    const [qty, setQty] = useState(1);
 
     const handleAddToCart = (e: FormEvent) => {
         e.preventDefault();
 
         dispatch(
             addToCart({
-                name: "ABCD",
-                description: "SLKJKLJLVJS",
-                price: 10,
-                stock: 12,
-                category: "unknown",
-                qty: 1,
+                name: data?.data?.name,
+                description: data?.data?.description,
+                price: data?.data?.price,
+                stock: data?.data?.stock,
+                category: data?.data?.category,
+                qty,
             })
         );
     };
@@ -28,35 +34,38 @@ const ProductDetails = () => {
             </div>
             <div className="flex-1 p-6">
                 <div>
-                    <p className="bg-green-200 w-[80px] text-center py-1 font-semibold text-sm rounded-sm border-2 border-green-400">
-                        In Stock
-                    </p>
+                    {data?.data?.stock > 0 ? (
+                        <p className="bg-green-200 w-[80px] text-center py-1 font-semibold text-sm rounded-sm border-2 border-green-400">
+                            In Stock
+                        </p>
+                    ) : (
+                        <p className="bg-red-200 w-[80px] text-center py-1 font-semibold text-sm rounded-sm border-2 border-red-400">
+                            Out of Stock
+                        </p>
+                    )}
+
                     <h1 className="text-xl font-semibold mt-2">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Cum, deleniti. Placeat porro provident autem enim?
+                        {data?.data?.name}
                     </h1>
                     <div className="mt-2">
                         <p className="text-[#FF5252] font-semibold text-sm">
-                            Category-1
+                            {data?.data?.category}
                         </p>
                     </div>
                     <p className="text-gray-600 mt-6">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Molestiae ad labore voluptates unde? Doloremque,
-                        optio quod laboriosam animi delectus facilis iusto
-                        quaerat architecto distinctio culpa excepturi, quia
-                        laudantium corrupti illum libero quasi saepe nihil.
-                        Quaerat ullam ipsum nesciunt perferendis modi fugit
-                        aliquid cum expedita, magni doloremque amet voluptates
-                        est architecto?
+                        {data?.data?.description}
                     </p>
                 </div>
                 <div className="mt-6 ">
                     <p>
+                        <span className="font-semibold">Price: </span>
+                        <span>{data?.data?.price}tk</span>
+                    </p>
+                    <p>
                         <span className="font-semibold">
                             Available in Stock:{" "}
                         </span>
-                        <span>100</span>
+                        <span>{data?.data?.stock}</span>
                     </p>
                 </div>
 
@@ -70,6 +79,8 @@ const ProductDetails = () => {
                             name="quantity"
                             id="quantity"
                             className="border-2 border-gray-400  w-20 p-2 ml-2 rounded-md"
+                            value={qty}
+                            onChange={(e) => setQty(parseInt(e.target.value))}
                         />
                     </div>
                     <div>
