@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import trademill from "../../assets/trademill.jpg";
-import { SizeType } from "../../types";
+import { SizeType, TCartProduct } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { FormEvent, useState } from "react";
 import {
@@ -13,23 +13,33 @@ const ProductDetails = () => {
     const { id } = useParams();
     const { data } = useGetSingleProductQuery(id);
     const dispatch = useAppDispatch();
-    const { products } = useAppSelector(getCartProducts);
+    const products = useAppSelector(getCartProducts);
     const [qty, setQty] = useState(1);
 
     const handleAddToCart = (e: FormEvent) => {
         e.preventDefault();
 
-        dispatch(
-            addToCart({
-                _id: data?.data?._id,
-                name: data?.data?.name,
-                description: data?.data?.description,
-                price: data?.data?.price,
-                stock: data?.data?.stock,
-                category: data?.data?.category,
-                qty,
-            })
+        console.log(products);
+        const getProduct = products?.find(
+            (product: TCartProduct) => product._id === data?.data?._id
         );
+
+        console.log("Get Product", getProduct);
+        if (getProduct && getProduct?.qty === data?.data?.stock) {
+            console.log("Not enough in stock");
+        } else {
+            dispatch(
+                addToCart({
+                    _id: data?.data?._id,
+                    name: data?.data?.name,
+                    description: data?.data?.description,
+                    price: data?.data?.price,
+                    stock: data?.data?.stock,
+                    category: data?.data?.category,
+                    qty,
+                })
+            );
+        }
     };
 
     return (
