@@ -22,11 +22,19 @@ const cartSlice = createSlice({
                 (product) => action.payload !== product._id
             );
         },
+        updateCart: (state, action: PayloadAction<string>) => {
+            state.products = state.products.map((product) => {
+                if (product._id === action.payload) {
+                    return { ...product, qty: product.qty + 1 };
+                }
+                return product;
+            });
+        },
     },
 });
 
 const cartReducer = cartSlice.reducer;
 export default cartReducer;
 
-export const { addToCart, deleteCart } = cartSlice.actions;
+export const { addToCart, deleteCart, updateCart } = cartSlice.actions;
 export const getCartProducts = (state: RootState) => state.cart.products;

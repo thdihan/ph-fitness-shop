@@ -9,7 +9,6 @@ import { useGetSingleProductQuery } from "../../redux/api/baseApi";
 const ProductDetails = () => {
     const { id } = useParams();
     const { data } = useGetSingleProductQuery(id);
-    console.log(data);
     const dispatch = useAppDispatch();
     const [qty, setQty] = useState(1);
 

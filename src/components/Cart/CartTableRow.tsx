@@ -2,11 +2,19 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 import trademill from "../../assets/trademill.jpg";
 import { TCartProduct } from "../../types";
 import { useAppDispatch } from "../../redux/hooks";
-import { deleteCart } from "../../redux/features/cart/cartSlice";
+import { deleteCart, updateCart } from "../../redux/features/cart/cartSlice";
+import { FormEvent, useState } from "react";
 const CartTableRow = ({ product }: { product: TCartProduct }) => {
     const dispatch = useAppDispatch();
     const handleDelete = () => {
         dispatch(deleteCart(product?._id));
+    };
+
+    const [qty, setQty] = useState(product?.qty);
+    const handleCartUpdate = (e: FormEvent) => {
+        e.preventDefault();
+        setQty(Number((e.target as HTMLInputElement).value));
+        dispatch(updateCart(product?._id));
     };
     return (
         <tr className="text-center border-b-2">
@@ -25,6 +33,8 @@ const CartTableRow = ({ product }: { product: TCartProduct }) => {
                         name="qty"
                         id=""
                         className="border-2 p-2 w-[100px]"
+                        value={qty}
+                        onChange={(e) => handleCartUpdate(e)}
                     />
                 </div>
             </td>
