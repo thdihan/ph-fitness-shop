@@ -36,10 +36,13 @@ const cartSlice = createSlice({
                 (product) => action.payload !== product._id
             );
         },
-        updateCart: (state, action: PayloadAction<string>) => {
+        updateCart: (
+            state,
+            action: PayloadAction<{ id: string; value: number }>
+        ) => {
             state.products = state.products.map((product) => {
-                if (product._id === action.payload) {
-                    return { ...product, qty: product.qty + 1 };
+                if (product._id === action.payload.id) {
+                    return { ...product, qty: action.payload.value };
                 }
                 return product;
             });

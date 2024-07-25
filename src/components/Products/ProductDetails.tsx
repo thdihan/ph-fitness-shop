@@ -19,12 +19,12 @@ const ProductDetails = () => {
     const handleAddToCart = (e: FormEvent) => {
         e.preventDefault();
 
-        console.log(products);
+        // console.log(products);
         const getProduct = products?.find(
             (product: TCartProduct) => product._id === data?.data?._id
         );
 
-        console.log("Get Product", getProduct);
+        // console.log("Get Product", getProduct);
         if (getProduct && getProduct?.qty === data?.data?.stock) {
             console.log("Not enough in stock");
         } else {
@@ -96,6 +96,7 @@ const ProductDetails = () => {
                             className="border-2 border-gray-400  w-20 p-2 ml-2 rounded-md"
                             value={qty}
                             onChange={(e) => setQty(parseInt(e.target.value))}
+                            min={1}
                         />
                     </div>
                     <div>

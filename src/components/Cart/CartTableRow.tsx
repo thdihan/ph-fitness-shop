@@ -13,8 +13,22 @@ const CartTableRow = ({ product }: { product: TCartProduct }) => {
     const [qty, setQty] = useState(product?.qty);
     const handleCartUpdate = (e: FormEvent) => {
         e.preventDefault();
-        setQty(Number((e.target as HTMLInputElement).value));
-        dispatch(updateCart(product?._id));
+
+        if (product?.stock >= parseInt(e.target?.value)) {
+            console.log(product?.stock, " ", parseInt(e.target?.value));
+            setQty(parseInt(e.target?.value));
+
+            dispatch(
+                updateCart({
+                    id: product?._id,
+                    value: parseInt(e.target?.value),
+                })
+            );
+        } else {
+            console.log(product?.stock, " ", parseInt(e.target?.value));
+
+            console.log("Not enough in stock");
+        }
     };
     return (
         <tr className="text-center border-b-2">
@@ -35,6 +49,7 @@ const CartTableRow = ({ product }: { product: TCartProduct }) => {
                         className="border-2 p-2 w-[100px]"
                         value={qty}
                         onChange={(e) => handleCartUpdate(e)}
+                        min={1}
                     />
                 </div>
             </td>
