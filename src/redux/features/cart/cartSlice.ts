@@ -15,7 +15,21 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<TCartProduct>) => {
-            state.products.push(action.payload);
+            const isProductAvailable =
+                state.products.length !== 0 &&
+                state.products?.find(
+                    (product) => product?._id === action.payload._id
+                );
+            console.log("Available Product", isProductAvailable);
+            if (!isProductAvailable) state.products.push(action.payload);
+            else {
+                state.products = state.products.map((product) => {
+                    if (product._id === action.payload._id) {
+                        return { ...product, qty: product.qty + 1 };
+                    }
+                    return product;
+                });
+            }
         },
         deleteCart: (state, action: PayloadAction<string>) => {
             state.products = state.products.filter(

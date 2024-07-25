@@ -1,15 +1,19 @@
 import { Button } from "antd";
 import trademill from "../../assets/trademill.jpg";
 import { SizeType } from "../../types";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { FormEvent, useState } from "react";
-import { addToCart } from "../../redux/features/cart/cartSlice";
+import {
+    addToCart,
+    getCartProducts,
+} from "../../redux/features/cart/cartSlice";
 import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../../redux/api/baseApi";
 const ProductDetails = () => {
     const { id } = useParams();
     const { data } = useGetSingleProductQuery(id);
     const dispatch = useAppDispatch();
+    const { products } = useAppSelector(getCartProducts);
     const [qty, setQty] = useState(1);
 
     const handleAddToCart = (e: FormEvent) => {
