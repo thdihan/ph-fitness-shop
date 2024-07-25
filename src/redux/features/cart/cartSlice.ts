@@ -25,7 +25,10 @@ const cartSlice = createSlice({
             else {
                 state.products = state.products.map((product) => {
                     if (product._id === action.payload._id) {
-                        return { ...product, qty: product.qty + 1 };
+                        return {
+                            ...product,
+                            qty: product.qty + action.payload.qty,
+                        };
                     }
                     return product;
                 });

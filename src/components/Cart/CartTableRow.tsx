@@ -4,6 +4,7 @@ import { TCartProduct } from "../../types";
 import { useAppDispatch } from "../../redux/hooks";
 import { deleteCart, updateCart } from "../../redux/features/cart/cartSlice";
 import { FormEvent, useState } from "react";
+import { toast } from "sonner";
 const CartTableRow = ({ product }: { product: TCartProduct }) => {
     const dispatch = useAppDispatch();
     const handleDelete = () => {
@@ -25,8 +26,8 @@ const CartTableRow = ({ product }: { product: TCartProduct }) => {
                 })
             );
         } else {
-            console.log(product?.stock, " ", parseInt(e.target?.value));
-
+            // console.log(product?.stock, " ", parseInt(e.target?.value));
+            toast.error("Not enough in stock");
             console.log("Not enough in stock");
         }
     };

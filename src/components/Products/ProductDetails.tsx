@@ -2,19 +2,31 @@ import { Button } from "antd";
 import trademill from "../../assets/trademill.jpg";
 import { SizeType, TCartProduct } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import {
     addToCart,
     getCartProducts,
 } from "../../redux/features/cart/cartSlice";
 import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../../redux/api/baseApi";
+import { toast } from "sonner";
 const ProductDetails = () => {
     const { id } = useParams();
     const { data } = useGetSingleProductQuery(id);
     const dispatch = useAppDispatch();
     const products = useAppSelector(getCartProducts);
     const [qty, setQty] = useState(1);
+
+    const [addCartButton, setAddCartButton] = useState(false);
+    useEffect(() => {
+        const getProduct = products?.find(
+            (product: TCartProduct) => product._id === data?.data?._id
+        );
+
+        if (getProduct) {
+            setAddCartButton(getProduct?.qty >= getProduct?.stock);
+        }
+    }, [products, data]);
 
     const handleAddToCart = (e: FormEvent) => {
         e.preventDefault();
@@ -25,8 +37,12 @@ const ProductDetails = () => {
         );
 
         // console.log("Get Product", getProduct);
+        // console.log(getProduct?.qty, " ", qty);
         if (getProduct && getProduct?.qty === data?.data?.stock) {
-            console.log("Not enough in stock");
+            // console.log("Not enough in stock");
+            toast.error("Not enough in stock");
+        } else if (getProduct && getProduct?.qty + qty > data?.data?.stock) {
+            toast.error("Not enough in stock");
         } else {
             dispatch(
                 addToCart({
@@ -106,6 +122,7 @@ const ProductDetails = () => {
                             size={"large" as SizeType}
                             danger
                             onClick={handleAddToCart}
+                            disabled={addCartButton}
                         >
                             Add to Cart
                         </Button>
