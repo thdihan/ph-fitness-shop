@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { getCartProducts } from "../../redux/features/cart/cartSlice";
+import { TCartProduct } from "../../types";
 
 const CartSummery = () => {
     const [total, setTotal] = useState(0);
@@ -8,7 +9,7 @@ const CartSummery = () => {
 
     useEffect(() => {
         setTotal(
-            products?.reduce((acc, product) => {
+            products?.reduce((acc: number, product: TCartProduct) => {
                 return acc + product.qty * product.price;
             }, 0)
         );

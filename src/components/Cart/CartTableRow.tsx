@@ -3,7 +3,13 @@ import trademill from "../../assets/trademill.jpg";
 import { TCartProduct } from "../../types";
 import { useAppDispatch } from "../../redux/hooks";
 import { deleteCart, updateCart } from "../../redux/features/cart/cartSlice";
-import { FormEvent, useEffect, useState } from "react";
+import {
+    Dispatch,
+    FormEvent,
+    SetStateAction,
+    useEffect,
+    useState,
+} from "react";
 import { toast } from "sonner";
 import { useGetSingleProductQuery } from "../../redux/api/baseApi";
 const CartTableRow = ({
@@ -11,6 +17,7 @@ const CartTableRow = ({
     setCheckoutButton,
 }: {
     product: TCartProduct;
+    setCheckoutButton: Dispatch<SetStateAction<boolean>>;
 }) => {
     const dispatch = useAppDispatch();
     const handleDelete = () => {

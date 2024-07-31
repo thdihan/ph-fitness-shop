@@ -49,12 +49,8 @@ const ProductDetails = () => {
             dispatch(
                 addToCart({
                     _id: data?.data?._id,
-                    name: data?.data?.name,
-                    description: data?.data?.description,
-                    price: data?.data?.price,
-                    stock: data?.data?.stock,
-                    category: data?.data?.category,
                     qty,
+                    price: data?.data?.price,
                 })
             );
         }

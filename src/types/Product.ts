@@ -10,4 +10,5 @@ export type TProduct = {
 export type TCartProduct = {
     _id: string;
     qty: number;
+    price: number;
 };
