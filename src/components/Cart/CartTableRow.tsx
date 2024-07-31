@@ -15,14 +15,15 @@ import { useGetSingleProductQuery } from "../../redux/api/baseApi";
 const CartTableRow = ({
     product,
     setCheckoutButton,
+    showModal,
+    setItemToDelete,
 }: {
     product: TCartProduct;
     setCheckoutButton: Dispatch<SetStateAction<boolean>>;
+    showModal: Dispatch<SetStateAction<boolean>>;
+    setItemToDelete: Dispatch<SetStateAction<string>>;
 }) => {
     const dispatch = useAppDispatch();
-    const handleDelete = () => {
-        dispatch(deleteCart(product?._id));
-    };
 
     const [qty, setQty] = useState(product?.qty);
 
@@ -98,7 +99,12 @@ const CartTableRow = ({
             </td>
             <td className="p-3 w-[50px]">
                 <div className="text-2xl text-[#FF5252] cursor-pointer">
-                    <RiDeleteBin2Line onClick={handleDelete} />
+                    <RiDeleteBin2Line
+                        onClick={() => {
+                            setItemToDelete(productDetails?.data?._id);
+                            showModal(true);
+                        }}
+                    />
                 </div>
             </td>
         </tr>

@@ -26,10 +26,10 @@ export const ButtonPrimary = ({
 
 export const ButtonSecondary = ({
     text,
-    to,
+    clickAction,
 }: {
     text: string | ReactNode;
-    to: string;
+    clickAction: any;
 }) => {
     const navigate = useNavigate();
     return (
@@ -38,7 +38,26 @@ export const ButtonSecondary = ({
             className="border-[#FF5252] hover:bg-[#fff] hover:border-[#FF5252] hover:text-[#FF5252] text-white font-normal"
             size={"large" as SizeType}
             danger
-            onClick={() => navigate(to)}
+            onClick={clickAction}
+        >
+            {text}
+        </Button>
+    );
+};
+export const ButtonWithoutBorder = ({
+    text,
+    clickAction,
+}: {
+    text: string | ReactNode;
+    clickAction: any;
+}) => {
+    const navigate = useNavigate();
+    return (
+        <Button
+            className=" text-white font-normal"
+            size={"large" as SizeType}
+            danger
+            onClick={clickAction}
         >
             {text}
         </Button>

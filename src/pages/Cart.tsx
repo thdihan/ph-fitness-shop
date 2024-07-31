@@ -7,6 +7,7 @@ import { useAppSelector } from "../redux/hooks";
 import { getCartProducts } from "../redux/features/cart/cartSlice";
 import CartSummery from "../components/Cart/CartSummery";
 import { useState } from "react";
+import DeleteCart from "../components/Cart/DeleteCart";
 const Cart = () => {
     const navitate = useNavigate();
     const products = useAppSelector(getCartProducts);
@@ -14,8 +15,16 @@ const Cart = () => {
     const [checkoutButton, setCheckoutButton] = useState(true);
     console.log("CheckoutButton,", checkoutButton);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState("");
+
     return (
         <div className="px-4 md:px-8 lg:px-16 py-6">
+            <DeleteCart
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                itemToDelete={itemToDelete}
+            />
             <div>
                 <h2
                     className="text-2xl flex items-center space-x-2 font-semibold text-[#FF5252]
@@ -45,6 +54,8 @@ const Cart = () => {
                                 <CartTableRow
                                     product={product}
                                     setCheckoutButton={setCheckoutButton}
+                                    showModal={setIsModalOpen}
+                                    setItemToDelete={setItemToDelete}
                                 />
                             ))}
 
