@@ -6,9 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks";
 import { getCartProducts } from "../redux/features/cart/cartSlice";
 import CartSummery from "../components/Cart/CartSummery";
+import { useState } from "react";
 const Cart = () => {
     const navitate = useNavigate();
     const products = useAppSelector(getCartProducts);
+
+    const [checkoutButton, setCheckoutButton] = useState(true);
+    console.log("CheckoutButton,", checkoutButton);
 
     return (
         <div className="px-4 md:px-8 lg:px-16 py-6">
@@ -27,6 +31,7 @@ const Cart = () => {
                             <tr className="">
                                 <th className="p-3 w-[100px]">Image</th>
                                 <th className="p-3 w-[100px]">Product</th>
+                                <th className="p-3 w-[50px]">Status</th>
                                 <th className="p-3 w-[50px]">Quantity</th>
                                 <th className="p-3 w-[50px]">Price</th>
                                 <th className="p-3 w-[50px]">Total</th>
@@ -37,7 +42,10 @@ const Cart = () => {
 
                         <tbody>
                             {products?.map((product) => (
-                                <CartTableRow product={product} />
+                                <CartTableRow
+                                    product={product}
+                                    setCheckoutButton={setCheckoutButton}
+                                />
                             ))}
 
                             {/* <CartTableRow />
@@ -58,7 +66,7 @@ const Cart = () => {
                             onClick={() => {
                                 navitate("/checkout");
                             }}
-                            disabled={products?.length === 0}
+                            disabled={products?.length === 0 || !checkoutButton}
                         >
                             Checkout
                         </Button>

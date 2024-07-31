@@ -3,25 +3,47 @@ import trademill from "../../assets/trademill.jpg";
 import { TCartProduct } from "../../types";
 import { useAppDispatch } from "../../redux/hooks";
 import { deleteCart, updateCart } from "../../redux/features/cart/cartSlice";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
-const CartTableRow = ({ product }: { product: TCartProduct }) => {
+import { useGetSingleProductQuery } from "../../redux/api/baseApi";
+const CartTableRow = ({
+    product,
+    setCheckoutButton,
+}: {
+    product: TCartProduct;
+}) => {
     const dispatch = useAppDispatch();
     const handleDelete = () => {
         dispatch(deleteCart(product?._id));
     };
 
     const [qty, setQty] = useState(product?.qty);
+
+    const { data: productDetails } = useGetSingleProductQuery(product._id);
+    console.log("Product Details", productDetails);
+
+    useEffect(() => {
+        if (productDetails?.data) {
+            const isAvailable = productDetails?.data?.stock >= product.qty;
+            console.log("IsAvailable", isAvailable);
+            setCheckoutButton((prev: boolean) => prev && isAvailable);
+        }
+    }, [productDetails, product]);
+
     const handleCartUpdate = (e: FormEvent) => {
         e.preventDefault();
 
-        if (product?.stock >= parseInt(e.target?.value)) {
-            console.log(product?.stock, " ", parseInt(e.target?.value));
+        if (productDetails?.data?.stock >= parseInt(e.target?.value)) {
+            console.log(
+                productDetails?.data?.stock,
+                " ",
+                parseInt(e.target?.value)
+            );
             setQty(parseInt(e.target?.value));
 
             dispatch(
                 updateCart({
-                    id: product?._id,
+                    id: productDetails?.data?._id,
                     value: parseInt(e.target?.value),
                 })
             );
@@ -36,10 +58,23 @@ const CartTableRow = ({ product }: { product: TCartProduct }) => {
             <td className="p-3 w-[100px]">
                 <img src={trademill} alt="" className="w-[125px]" />
             </td>
-            <td className="p-3 w-[100px]">{product?.name}</td>
+            <td className="p-3 w-[100px]">{productDetails?.data?.name}</td>
+            <td className="p-3 w-[50px]">
+                {productDetails?.data?.stock ? (
+                    <p className="bg-green-300 border-2 border-green-500 text-sm font-semibold py-1">
+                        In Stock
+                    </p>
+                ) : (
+                    <p className="bg-red-300 border-2 border-red-500 text-sm font-semibold py-1">
+                        Stock Out
+                    </p>
+                )}
+            </td>
             <td className="p-3 w-[50px]">{product?.qty}</td>
-            <td className="p-3 w-[50px]">{product?.price}</td>
-            <td className="p-3 w-[50px]">{product?.qty * product?.price}</td>
+            <td className="p-3 w-[50px]">{productDetails?.data?.price}</td>
+            <td className="p-3 w-[50px]">
+                {product?.qty * productDetails?.data?.price}
+            </td>
 
             <td className="p-3 w-[100px]">
                 <div>

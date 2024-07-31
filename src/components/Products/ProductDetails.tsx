@@ -23,8 +23,10 @@ const ProductDetails = () => {
             (product: TCartProduct) => product._id === data?.data?._id
         );
 
+        setAddCartButton(data?.data?.stock === 0);
         if (getProduct) {
-            setAddCartButton(getProduct?.qty >= getProduct?.stock);
+            const isTrue = getProduct?.qty >= data?.data?.stock;
+            setAddCartButton(isTrue);
         }
     }, [products, data]);
 

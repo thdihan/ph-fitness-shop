@@ -7,6 +7,7 @@ export type TProduct = {
     category: string;
 };
 
-export type TCartProduct = TProduct & {
+export type TCartProduct = {
+    _id: string;
     qty: number;
 };
