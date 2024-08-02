@@ -19,7 +19,18 @@ export const baseApi = createApi({
                 method: "GET",
             }),
         }),
+
+        getAllCategories: builder.query({
+            query: () => ({
+                url: "/category",
+                method: "GET",
+            }),
+        }),
     }),
 });
 
-export const { useGetAllProductsQuery, useGetSingleProductQuery } = baseApi;
+export const {
+    useGetAllProductsQuery,
+    useGetSingleProductQuery,
+    useGetAllCategoriesQuery,
+} = baseApi;

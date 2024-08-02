@@ -1,6 +1,6 @@
 import { ButtonSecondary } from "../Buttons/Buttons";
 
-const AddProductForm = ({ handleSubmit }) => {
+const AddProductForm = ({ handleSubmit, categories }) => {
     return (
         <div className="flex-[2] mt-3">
             <h2 className="font-semibold">Product Information</h2>
@@ -42,11 +42,15 @@ const AddProductForm = ({ handleSubmit }) => {
                         id=""
                         className="p-2 border-2 border-gray-400 rounded-md"
                     >
-                        <option value="">Category 1</option>
-                        <option value="">Category 1</option>
-                        <option value="">Category 1</option>
-                        <option value="">Category 1</option>
+                        {categories?.map((category) => (
+                            <option value={category.id}>{category.name}</option>
+                        ))}
                     </select>
+                    <div>
+                        <p className="text-[#FF5252] font-bold cursor-pointer">
+                            + Add new category
+                        </p>
+                    </div>
                 </div>
 
                 <div className="flex flex-col space-y-1">

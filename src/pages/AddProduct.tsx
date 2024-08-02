@@ -2,6 +2,7 @@ import ImageUploader from "../components/ProductManagement/ImageUploader";
 import AddProductForm from "../components/ProductManagement/AddProductForm";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useGetAllCategoriesQuery } from "../redux/api/baseApi";
 
 type TInitialImage = {
     file: File;
@@ -14,6 +15,9 @@ const initialImage: TInitialImage = {
 const AddProduct = () => {
     const [image, setImage] = useState(initialImage);
     const [url, setUrl] = useState("");
+
+    const { data } = useGetAllCategoriesQuery(undefined);
+    console.log("Categories", data);
 
     const handleSubmit = async () => {
         const data = new FormData();
@@ -48,7 +52,10 @@ const AddProduct = () => {
 
             <div className="flex flex-col lg:flex-row lg:space-x-6">
                 <ImageUploader image={image} setImage={setImage} />
-                <AddProductForm handleSubmit={handleSubmit} />
+                <AddProductForm
+                    handleSubmit={handleSubmit}
+                    categories={data?.data}
+                />
             </div>
         </div>
     );
