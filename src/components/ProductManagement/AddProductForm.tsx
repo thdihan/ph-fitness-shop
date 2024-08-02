@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { ButtonSecondary } from "../Buttons/Buttons";
+import AddCategoryModal from "./AddCategoryModal";
 
 const AddProductForm = ({ handleSubmit, categories }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <div className="flex-[2] mt-3">
+            <AddCategoryModal
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+            />
             <h2 className="font-semibold">Product Information</h2>
             <form className="mt-2 space-y-2 flex flex-col">
                 <div className="flex flex-col space-y-1">
@@ -47,7 +54,10 @@ const AddProductForm = ({ handleSubmit, categories }) => {
                         ))}
                     </select>
                     <div>
-                        <p className="text-[#FF5252] font-bold cursor-pointer">
+                        <p
+                            className="text-[#FF5252] font-bold cursor-pointer"
+                            onClick={() => setIsModalOpen(true)}
+                        >
                             + Add new category
                         </p>
                     </div>
