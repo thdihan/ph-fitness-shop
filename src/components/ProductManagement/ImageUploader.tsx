@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 
-const ImageUploader = () => {
+const ImageUploader = ({ image, setImage }) => {
     const inputRef = useRef(null);
-    const [image, setImage] = useState({});
+
     const [dragging, setDragging] = useState(false);
     const onSelectClick = () => {
         inputRef?.current?.click();

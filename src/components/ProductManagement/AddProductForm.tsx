@@ -1,6 +1,6 @@
-import { ButtonPrimary } from "../Buttons/Buttons";
+import { ButtonSecondary } from "../Buttons/Buttons";
 
-const AddProductForm = () => {
+const AddProductForm = ({ handleSubmit }) => {
     return (
         <div className="flex-[2] mt-3">
             <h2 className="font-semibold">Product Information</h2>
@@ -59,7 +59,10 @@ const AddProductForm = () => {
                 </div>
 
                 <div>
-                    <ButtonPrimary text="Add Product" to={`/add-product`} />
+                    <ButtonSecondary
+                        text="Add Product"
+                        clickAction={handleSubmit}
+                    />
                 </div>
             </form>
         </div>
