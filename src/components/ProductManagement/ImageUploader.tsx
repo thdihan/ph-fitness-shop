@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 const ImageUploader = ({ image, setImage }) => {
     const inputRef = useRef(null);
@@ -18,7 +18,7 @@ const ImageUploader = ({ image, setImage }) => {
         setDragging(false);
     };
 
-    const onDrop = (e) => {
+    const onDrop = (e: FormEvent) => {
         e.preventDefault();
         setDragging(false);
         console.log(e.dataTransfer.files);
@@ -80,6 +80,12 @@ const ImageUploader = ({ image, setImage }) => {
                     id=""
                     className="hidden"
                     ref={inputRef}
+                    onChange={(e: FormEvent) =>
+                        setImage({
+                            file: e.target.files[0],
+                            url: URL.createObjectURL(e.target.files[0]),
+                        })
+                    }
                 />
             </div>
         </div>
