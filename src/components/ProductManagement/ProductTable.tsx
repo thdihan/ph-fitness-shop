@@ -1,9 +1,28 @@
 import { BiEdit, BiTrash } from "react-icons/bi";
-import { useGetAllProductsQuery } from "../../redux/api/baseApi";
+import {
+    useGetAllProductsQuery,
+    useUpdateProductMutation,
+} from "../../redux/api/baseApi";
 import { Link } from "react-router-dom";
+import { TProduct } from "../../types";
+import { toast } from "sonner";
 
 const ProductTable = () => {
     const { data } = useGetAllProductsQuery(undefined);
+
+    const [updateProduct] = useUpdateProductMutation();
+
+    const changeFeatured = async (id: string, product: TProduct) => {
+        try {
+            const isFeatured = !product.isFeatured;
+            await updateProduct({
+                id,
+                data: { ...product, isFeatured },
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <table className="w-[1000px] lg:w-full  border-2">
             <thead className="bg-gray-400">
@@ -39,6 +58,9 @@ const ProductTable = () => {
                                 id=""
                                 className="size-5 accent-[#FF5252]"
                                 checked={product?.isFeatured}
+                                onChange={() =>
+                                    changeFeatured(product._id, product)
+                                }
                             />
                         </td>
                         <td className="p-3 w-[100px]">{product?.category}</td>

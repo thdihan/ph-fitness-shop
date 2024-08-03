@@ -5,6 +5,7 @@ export type TProduct = {
     price: number;
     stock: number;
     category: string;
+    isFeatured?: boolean;
 };
 export type TInitialProduct = {
     name: string;
