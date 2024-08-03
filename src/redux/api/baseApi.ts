@@ -5,13 +5,14 @@ export const baseApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:5001/api/v1",
     }),
-    tagTypes: ["Category"],
+    tagTypes: ["Category", "Products", "Product"],
     endpoints: (builder) => ({
         getAllProducts: builder.query({
             query: () => ({
                 url: "/product",
                 method: "GET",
             }),
+            providesTags: ["Products"],
         }),
 
         getSingleProduct: builder.query({
@@ -19,6 +20,7 @@ export const baseApi = createApi({
                 url: `/product/${productId}`,
                 method: "GET",
             }),
+            providesTags: ["Product"],
         }),
 
         getAllCategories: builder.query({
@@ -38,6 +40,15 @@ export const baseApi = createApi({
             }),
             invalidatesTags: ["Category"],
         }),
+
+        addNewProduct: builder.mutation({
+            query: (product) => ({
+                url: "/product",
+                method: "POST",
+                body: product,
+            }),
+            invalidatesTags: ["Products", "Product"],
+        }),
     }),
 });
 
@@ -46,4 +57,5 @@ export const {
     useGetSingleProductQuery,
     useGetAllCategoriesQuery,
     useAddNewCategoryMutation,
+    useAddNewProductMutation,
 } = baseApi;

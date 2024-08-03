@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ButtonSecondary } from "../Buttons/Buttons";
 import AddCategoryModal from "./AddCategoryModal";
 
-const AddProductForm = ({ handleSubmit, categories }) => {
+const AddProductForm = ({ handleSubmit, categories, product, dispatch }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <div className="flex-[2] mt-3">
@@ -19,6 +19,13 @@ const AddProductForm = ({ handleSubmit, categories }) => {
                         name="productName"
                         id="product-name"
                         className="p-2 border-2 border-gray-400 rounded-md"
+                        value={product.name}
+                        onChange={(e) =>
+                            dispatch({
+                                type: "name",
+                                payload: e.target.value,
+                            })
+                        }
                     />
                 </div>
                 <div className="flex  space-x-0 lg:space-x-3 lg:flex-row flex-col ">
@@ -29,6 +36,13 @@ const AddProductForm = ({ handleSubmit, categories }) => {
                             name="productName"
                             id="product-name"
                             className="p-2 border-2 border-gray-400 rounded-md"
+                            value={product.stock}
+                            onChange={(e) =>
+                                dispatch({
+                                    type: "stock",
+                                    payload: e.target.value,
+                                })
+                            }
                         />
                     </div>
                     <div className="flex  flex-1 flex-col space-y-1">
@@ -38,6 +52,13 @@ const AddProductForm = ({ handleSubmit, categories }) => {
                             name="productName"
                             id="product-name"
                             className="p-2 border-2 border-gray-400 rounded-md"
+                            value={product.price}
+                            onChange={(e) =>
+                                dispatch({
+                                    type: "price",
+                                    payload: e.target.value,
+                                })
+                            }
                         />
                     </div>
                 </div>
@@ -48,10 +69,21 @@ const AddProductForm = ({ handleSubmit, categories }) => {
                         name=""
                         id=""
                         className="p-2 border-2 border-gray-400 rounded-md"
+                        value={product.category}
+                        onChange={(e) =>
+                            dispatch({
+                                type: "category",
+                                payload: e.target.value,
+                            })
+                        }
                     >
-                        {categories?.map((category) => (
-                            <option value={category.id}>{category.name}</option>
-                        ))}
+                        {categories?.map(
+                            (category: { _id: string; name: string }) => (
+                                <option value={category.name}>
+                                    {category.name}
+                                </option>
+                            )
+                        )}
                     </select>
                     <div>
                         <p
@@ -69,6 +101,13 @@ const AddProductForm = ({ handleSubmit, categories }) => {
                         name="description"
                         id="description"
                         className="p-2 border-2 border-gray-400 rounded-md"
+                        value={product.description}
+                        onChange={(e) =>
+                            dispatch({
+                                type: "description",
+                                payload: e.target.value,
+                            })
+                        }
                     ></textarea>
                 </div>
 
