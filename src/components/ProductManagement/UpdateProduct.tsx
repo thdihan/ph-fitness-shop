@@ -1,12 +1,13 @@
-import ImageUploader from "../components/ProductManagement/ImageUploader";
-import AddProductForm from "../components/ProductManagement/AddProductForm";
-import { useReducer, useState } from "react";
-import { toast } from "sonner";
+import { useNavigate, useParams } from "react-router-dom";
+import { TProduct } from "../../types";
 import {
-    useAddNewProductMutation,
-    useGetAllCategoriesQuery,
-} from "../redux/api/baseApi";
-import { useNavigate } from "react-router-dom";
+    useGetSingleProductQuery,
+    useUpdateProductMutation,
+} from "../../redux/api/baseApi";
+import { useEffect, useReducer, useState } from "react";
+import ImageUploader from "./ImageUploader";
+import AddProductForm from "./AddProductForm";
+import { toast } from "sonner";
 
 type TInitialImage = {
     file: File;
@@ -43,16 +44,26 @@ const productReducer = (state: any, action: any) => {
             return state;
     }
 };
-const AddProduct = () => {
+const UpdateProduct = () => {
     const navigate = useNavigate();
+    const { productId } = useParams<{ productId: string }>();
+    const { data } = useGetSingleProductQuery(productId);
+
     const [image, setImage] = useState(initialImage);
-    const [url, setUrl] = useState("");
-
     const [product, dispatch] = useReducer(productReducer, initialProduct);
+    const [updateProduct] = useUpdateProductMutation();
 
-    const { data } = useGetAllCategoriesQuery(undefined);
-    const [addNewProduct] = useAddNewProductMutation();
-    console.log("Categories", data);
+    useEffect(() => {
+        if (data) {
+            dispatch({ type: "name", payload: data.data.name });
+            dispatch({ type: "description", payload: data.data.description });
+            dispatch({ type: "price", payload: data.data.price });
+            dispatch({ type: "stock", payload: data.data.stock });
+            dispatch({ type: "category", payload: data.data.category });
+            dispatch({ type: "image", payload: data.data.image });
+            image.url = data.data.image;
+        }
+    }, [data]);
 
     const handleSubmit = async () => {
         const data = new FormData();
@@ -71,18 +82,20 @@ const AddProduct = () => {
 
             const file = await res.json();
             console.log("File", file);
-            setUrl(file.url);
             toast.success("Image uploaded successfully");
 
             // Upload product
             const newProduct = {
-                ...product,
-                image: file.url,
+                id: productId,
+                data: {
+                    ...product,
+                    image: file.url,
+                },
             };
 
             console.log("New Product", newProduct);
-            await addNewProduct(newProduct);
-            toast.success("Product added successfully");
+            await updateProduct(newProduct);
+            toast.success("Product Updated successfully");
             navigate("/product-management");
         } catch (error) {
             toast.error("Failed to upload image");
@@ -102,10 +115,11 @@ const AddProduct = () => {
                     handleSubmit={handleSubmit}
                     product={product}
                     dispatch={dispatch}
+                    update={true}
                 />
             </div>
         </div>
     );
 };
 
-export default AddProduct;
+export default UpdateProduct;

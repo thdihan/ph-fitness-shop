@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { ButtonSecondary } from "../Buttons/Buttons";
 import AddCategoryModal from "./AddCategoryModal";
+import { useGetAllCategoriesQuery } from "../../redux/api/baseApi";
 
-const AddProductForm = ({ handleSubmit, categories, product, dispatch }) => {
+const AddProductForm = ({
+    handleSubmit,
+    product,
+    dispatch,
+    update = false,
+}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { data: categories } = useGetAllCategoriesQuery(undefined);
     return (
         <div className="flex-[2] mt-3">
             <AddCategoryModal
@@ -77,7 +84,7 @@ const AddProductForm = ({ handleSubmit, categories, product, dispatch }) => {
                             })
                         }
                     >
-                        {categories?.map(
+                        {categories?.data?.map(
                             (category: { _id: string; name: string }) => (
                                 <option value={category.name}>
                                     {category.name}
@@ -113,7 +120,7 @@ const AddProductForm = ({ handleSubmit, categories, product, dispatch }) => {
 
                 <div>
                     <ButtonSecondary
-                        text="Add Product"
+                        text={update ? "Update Product" : "Add Product"}
                         clickAction={handleSubmit}
                     />
                 </div>

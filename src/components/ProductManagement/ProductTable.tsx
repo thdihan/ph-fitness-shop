@@ -1,12 +1,16 @@
 import { BiEdit, BiTrash } from "react-icons/bi";
+import { useGetAllProductsQuery } from "../../redux/api/baseApi";
+import { Link } from "react-router-dom";
 
 const ProductTable = () => {
+    const { data } = useGetAllProductsQuery(undefined);
     return (
         <table className="w-[1000px] lg:w-full  border-2">
             <thead className="bg-gray-400">
                 <tr className="text-left">
                     <th className="p-3 w-[100px]">Image</th>
                     <th className="p-3 w-[100px]">Product</th>
+                    <th className="p-3 w-[30px]">Featured?</th>
                     <th className="p-3 w-[100px]">Category</th>
                     <th className="p-3 w-[50px]">Price</th>
                     <th className="p-3 w-[50px]">Stock</th>
@@ -15,44 +19,41 @@ const ProductTable = () => {
             </thead>
 
             <tbody>
-                <tr className="border-b-2">
-                    <td className="p-3 w-[100px]">
-                        <img
-                            src="https://via.placeholder.com/150"
-                            alt="product"
-                            className="w-[80px] h-[80px] object-cover"
-                        />
-                    </td>
-                    <td className="p-3 w-[100px]">Product Name</td>
-                    <td className="p-3 w-[100px]">Category</td>
-                    <td className="p-3 w-[50px]">Price</td>
-                    <td className="p-3 w-[50px]">Stock</td>
-                    <td className="p-3 w-[100px] space-x-2">
-                        <div className="space-x-4 flex items-center">
-                            <BiEdit className="text-2xl" />
-                            <BiTrash className="text-2xl text-[#FF5252]" />
-                        </div>
-                    </td>
-                </tr>
-                <tr className="border-b-2">
-                    <td className="p-3 w-[100px]">
-                        <img
-                            src="https://via.placeholder.com/150"
-                            alt="product"
-                            className="w-20 h-20 object-cover"
-                        />
-                    </td>
-                    <td className="p-3 w-[100px]">Product Name</td>
-                    <td className="p-3 w-[100px]">Category</td>
-                    <td className="p-3 w-[50px]">Price</td>
-                    <td className="p-3 w-[50px]">Stock</td>
-                    <td className="p-3 w-[100px] ">
-                        <div className="space-x-4 flex items-center">
-                            <BiEdit className="text-2xl" />
-                            <BiTrash className="text-2xl text-[#FF5252]" />
-                        </div>
-                    </td>
-                </tr>
+                {data?.data?.map((product) => (
+                    <tr className="border-b-2">
+                        <td className="p-3 w-[100px]">
+                            <img
+                                src={
+                                    product?.image ||
+                                    "https://via.placeholder.com/150"
+                                }
+                                alt="product"
+                                className="w-[80px] h-[80px] object-cover"
+                            />
+                        </td>
+                        <td className="p-3 w-[100px]">{product?.name}</td>
+                        <td className="p-3 w-[30px] mx-auto">
+                            <input
+                                type="checkbox"
+                                name=""
+                                id=""
+                                className="size-5 accent-[#FF5252]"
+                                checked={product?.isFeatured}
+                            />
+                        </td>
+                        <td className="p-3 w-[100px]">{product?.category}</td>
+                        <td className="p-3 w-[50px]">{product?.price}</td>
+                        <td className="p-3 w-[50px]">{product?.stock}</td>
+                        <td className="p-3 w-[100px] space-x-2">
+                            <div className="space-x-4 flex items-center">
+                                <Link to={`/update/${product._id}`}>
+                                    <BiEdit className="text-2xl" />
+                                </Link>
+                                <BiTrash className="text-2xl text-[#FF5252]" />
+                            </div>
+                        </td>
+                    </tr>
+                ))}
             </tbody>
         </table>
     );
