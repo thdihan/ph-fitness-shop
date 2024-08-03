@@ -1,5 +1,6 @@
 import { BiEdit, BiTrash } from "react-icons/bi";
 import {
+    useDeleteProductMutation,
     useGetAllProductsQuery,
     useUpdateProductMutation,
 } from "../../redux/api/baseApi";
@@ -11,6 +12,7 @@ const ProductTable = () => {
     const { data } = useGetAllProductsQuery(undefined);
 
     const [updateProduct] = useUpdateProductMutation();
+    const [deleteProduct] = useDeleteProductMutation();
 
     const changeFeatured = async (id: string, product: TProduct) => {
         try {
@@ -23,6 +25,16 @@ const ProductTable = () => {
             console.log(error);
         }
     };
+
+    const handleDelete = async (id: string) => {
+        try {
+            await deleteProduct(id);
+            toast.success("Product deleted successfully");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <table className="w-[1000px] lg:w-full  border-2">
             <thead className="bg-gray-400">
@@ -71,7 +83,10 @@ const ProductTable = () => {
                                 <Link to={`/update/${product._id}`}>
                                     <BiEdit className="text-2xl" />
                                 </Link>
-                                <BiTrash className="text-2xl text-[#FF5252]" />
+                                <BiTrash
+                                    onClick={() => handleDelete(product._id)}
+                                    className="text-2xl text-[#FF5252] cursor-pointer"
+                                />
                             </div>
                         </td>
                     </tr>
