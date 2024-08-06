@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import trademill from "../../assets/trademill.jpg";
 import { SizeType, TCartProduct } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { FormEvent, useEffect, useState } from "react";
@@ -10,12 +9,14 @@ import {
 import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../../redux/api/baseApi";
 import { toast } from "sonner";
+import parser from "html-react-parser";
 const ProductDetails = () => {
     const { id } = useParams();
     const { data } = useGetSingleProductQuery(id);
     const dispatch = useAppDispatch();
     const products = useAppSelector(getCartProducts);
     const [qty, setQty] = useState(1);
+    const [description, setDescription] = useState("");
 
     const [addCartButton, setAddCartButton] = useState(false);
     useEffect(() => {
@@ -56,10 +57,20 @@ const ProductDetails = () => {
         }
     };
 
+    useEffect(() => {
+        console.log(data?.data?.description);
+        const description =
+            `<p>` +
+            data?.data?.description.replaceAll("\\n", "<br />") +
+            `</p>`;
+        console.log(description);
+        setDescription(description);
+    }, [data]);
+
     return (
         <div className="px-4 md:px-8 lg:px-16 flex py-6 flex-col lg:flex-row">
             <div className="flex-1 border-2">
-                <img src={trademill} alt="" />
+                <img src={data?.data?.image} alt="" />
             </div>
             <div className="flex-1 p-6">
                 <div>
@@ -82,7 +93,8 @@ const ProductDetails = () => {
                         </p>
                     </div>
                     <p className="text-gray-600 mt-6">
-                        {data?.data?.description}
+                        {/* // replace all \n to <br> tag */}
+                        {parser(description)}
                     </p>
                 </div>
                 <div className="mt-6 ">

@@ -1,18 +1,20 @@
 import { BiEdit, BiTrash } from "react-icons/bi";
 import {
-    useDeleteProductMutation,
     useGetAllProductsQuery,
     useUpdateProductMutation,
 } from "../../redux/api/baseApi";
 import { Link } from "react-router-dom";
 import { TProduct } from "../../types";
-import { toast } from "sonner";
+import DeleteProductModel from "./DeleteProductModel";
+import { useState } from "react";
 
 const ProductTable = () => {
     const { data } = useGetAllProductsQuery(undefined);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState("");
+
     const [updateProduct] = useUpdateProductMutation();
-    const [deleteProduct] = useDeleteProductMutation();
 
     const changeFeatured = async (id: string, product: TProduct) => {
         try {
@@ -21,15 +23,6 @@ const ProductTable = () => {
                 id,
                 data: { ...product, isFeatured },
             });
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const handleDelete = async (id: string) => {
-        try {
-            await deleteProduct(id);
-            toast.success("Product deleted successfully");
         } catch (error) {
             console.log(error);
         }
@@ -84,8 +77,16 @@ const ProductTable = () => {
                                     <BiEdit className="text-2xl" />
                                 </Link>
                                 <BiTrash
-                                    onClick={() => handleDelete(product._id)}
+                                    onClick={() => {
+                                        setItemToDelete(product?._id);
+                                        setIsModalOpen(true);
+                                    }}
                                     className="text-2xl text-[#FF5252] cursor-pointer"
+                                />
+                                <DeleteProductModel
+                                    isModalOpen={isModalOpen}
+                                    setIsModalOpen={setIsModalOpen}
+                                    itemToDelete={itemToDelete}
                                 />
                             </div>
                         </td>

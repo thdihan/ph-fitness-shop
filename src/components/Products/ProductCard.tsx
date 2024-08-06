@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import trademill from "../../assets/trademill.jpg";
 import { Button } from "antd";
 import { TProduct } from "../../types";
 const ProductCard = ({ product }: { product: TProduct }) => {
@@ -11,7 +10,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
 
             <div className="space-y-1">
                 <p className="text-sm text-gray-600">{product?.category}</p>
-                <Link to="">
+                <Link to={`/products/${product._id}`}>
                     <h2 className="text-lg font-semibold text-left hover:text-[#FF5252] transition-all duration-300">
                         {product?.name}
                     </h2>
@@ -20,7 +19,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
                 <p className="text-lg text-[#FF5252] font-semibold">
                     ${product?.price}
                 </p>
-                <Link to="/products/669b47d076e44d15082a96a2">
+                <Link to={`/products/${product._id}`}>
                     <Button className="w-full bg-[#FF5252] text-white font-semibold">
                         View Details
                     </Button>
