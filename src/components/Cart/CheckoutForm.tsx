@@ -1,4 +1,4 @@
-const CheckoutForm = () => {
+const CheckoutForm = ({ state, dispatch }) => {
     return (
         <form className="flex-[3] space-y-3">
             <div className="flex flex-col">
@@ -10,6 +10,10 @@ const CheckoutForm = () => {
                     name="name"
                     id="name"
                     className="border-2 border-gray-400 w-full p-2 rounded-md "
+                    value={state.name}
+                    onChange={(e) =>
+                        dispatch({ type: "name", value: e.target.value })
+                    }
                 />
             </div>
             <div className="flex flex-col">
@@ -21,6 +25,10 @@ const CheckoutForm = () => {
                     name="email"
                     id="email"
                     className="border-2 border-gray-400 w-full p-2 rounded-md "
+                    value={state.email}
+                    onChange={(e) =>
+                        dispatch({ type: "email", value: e.target.value })
+                    }
                 />
             </div>
             <div className="flex flex-col">
@@ -32,6 +40,10 @@ const CheckoutForm = () => {
                     name="contact"
                     id="contact"
                     className="border-2 border-gray-400 w-full p-2 rounded-md"
+                    value={state.contact}
+                    onChange={(e) =>
+                        dispatch({ type: "contact", value: e.target.value })
+                    }
                 />
             </div>
             <div className="flex flex-col">
@@ -42,6 +54,10 @@ const CheckoutForm = () => {
                     name="address"
                     id="address"
                     className="border-2 border-gray-400 w-full p-2 rounded-md"
+                    value={state.address}
+                    onChange={(e) =>
+                        dispatch({ type: "address", value: e.target.value })
+                    }
                 ></textarea>
             </div>
             <div className="flex flex-col">
@@ -55,6 +71,10 @@ const CheckoutForm = () => {
                             name="payment"
                             id="payment"
                             className="border-2 border-gray-400 p-2 rounded-md"
+                            checked={state.payment === "cash"}
+                            onChange={() =>
+                                dispatch({ type: "payment", value: "cash" })
+                            }
                         />
                         <label htmlFor="payment">Cash On Delivery</label>
                     </div>
@@ -65,6 +85,10 @@ const CheckoutForm = () => {
                             name="payment"
                             id="payment"
                             className="border-2 border-gray-400 p-2 rounded-md"
+                            checked={state.payment === "stripe"}
+                            onChange={() =>
+                                dispatch({ type: "payment", value: "stripe" })
+                            }
                         />
                         <label htmlFor="payment">Stripe</label>
                     </div>
