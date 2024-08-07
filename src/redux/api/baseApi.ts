@@ -73,6 +73,7 @@ export const baseApi = createApi({
                 method: "POST",
                 body: order,
             }),
+            invalidatesTags: ["Products", "Product"],
         }),
     }),
 });
