@@ -8,6 +8,7 @@ import Checkout from "../pages/Checkout";
 import ProductManagement from "../pages/ProductManagement";
 import AddProduct from "../pages/AddProduct";
 import UpdateProduct from "../components/ProductManagement/UpdateProduct";
+import ConfirmOrder from "../pages/ConfirmOrder";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: "/add-product",
                 element: <AddProduct />,
+            },
+            {
+                path: "/confirm-order/",
+                element: <ConfirmOrder />,
             },
         ],
     },

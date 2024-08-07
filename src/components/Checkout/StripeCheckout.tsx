@@ -6,15 +6,43 @@ import {
     useStripe,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { SizeType } from "../../types";
+
 import { useEffect, useState } from "react";
+import { ButtonSecondary, ButtonWithoutBorder } from "../Buttons/Buttons";
+import { useCreateOrderMutation } from "../../redux/api/baseApi";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { clearCart } from "../../redux/features/cart/cartSlice";
 
 const stripePromise = loadStripe(
     "pk_test_51Pkp2rLw1MUS3mw4qjto8n6YtmTF9VG6SWDtwHO4ULFq0GOKhYStOeSPmd6euEOJyUfIhFUEBKW71p0h4enwEr3Q00AoaW6cOx"
 );
-const StripeCheckout = ({ isModalOpen, setIsModalOpen }) => {
+const StripeCheckout = ({ isModalOpen, setIsModalOpen, order }) => {
+    const [createOrder] = useCreateOrderMutation();
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    console.log(order);
     const handleOk = async () => {
-        setIsModalOpen(false);
+        console.log("ORDER", order);
+
+        try {
+            const total = order.products.reduce(
+                (acc: number, product) => acc + product.price * product.qty,
+                0
+            );
+            const orderData = {
+                ...order,
+                total,
+            };
+            await createOrder(orderData);
+            toast.success("Order confirmed");
+            setIsModalOpen(false);
+            dispatch(clearCart());
+            navigate("/confirm-order");
+        } catch (error) {
+            toast.error("Can't confirm order");
+        }
     };
 
     const handleCancel = () => {
@@ -23,15 +51,33 @@ const StripeCheckout = ({ isModalOpen, setIsModalOpen }) => {
 
     return (
         <Modal
-            title="Stripe Payment"
+            title={
+                order.payment.method == "stripe"
+                    ? "Payment and Confirm Order"
+                    : "Confirm Order"
+            }
             open={isModalOpen}
             onOk={handleOk}
             onCancel={handleCancel}
             footer={null}
         >
-            <Elements stripe={stripePromise}>
-                <CheckoutForm />
-            </Elements>
+            {order.payment.method === "stripe" ? (
+                <Elements stripe={stripePromise}>
+                    <CheckoutForm
+                        order={order}
+                        setIsModalOpen={setIsModalOpen}
+                    />
+                </Elements>
+            ) : (
+                <div className="space-x-2">
+                    <ButtonSecondary text="Confirm" clickAction={handleOk} />
+                    <ButtonWithoutBorder
+                        text="Cancel"
+                        clickAction={handleCancel}
+                    />
+                </div>
+            )}
+
             {/* <div className="space-x-2">
                 <ButtonSecondary text="Delete" clickAction={handleOk} />
                 <ButtonWithoutBorder
@@ -43,22 +89,31 @@ const StripeCheckout = ({ isModalOpen, setIsModalOpen }) => {
     );
 };
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ order, setIsModalOpen }) => {
     const stripe = useStripe();
     const elements = useElements();
 
     const [clientSecret, setClientSecret] = useState("");
+    const [loading, isLoading] = useState(false);
+
+    const [createOrder] = useCreateOrderMutation();
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
+        const totalPrice = order.products.reduce(
+            (acc: number, product) => acc + product.price * product.qty,
+            0
+        );
         fetch("http://localhost:5001/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ price: 500 }),
+            body: JSON.stringify({ price: totalPrice }),
         })
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
-    }, []);
+    }, [order]);
 
     const handleSubmit = async (event) => {
         // Block native form submission.
@@ -102,6 +157,28 @@ const CheckoutForm = () => {
             });
 
         console.log("Payment Intent", paymentIntent);
+        if (paymentIntent?.status === "succeeded") {
+            try {
+                const total = order.products.reduce(
+                    (acc: number, product) => acc + product.price * product.qty,
+                    0
+                );
+                const orderData = {
+                    ...order,
+                    total,
+                    payment: { method: "stripe", status: "done" },
+                };
+                await createOrder(orderData);
+                toast.success("Order confirmed");
+                setIsModalOpen(false);
+                dispatch(clearCart());
+                navigate("/confirm-order");
+            } catch (error) {
+                toast.error("Can't confirm order");
+            }
+        } else {
+            toast.error("Payment failed, try again");
+        }
     };
 
     return (

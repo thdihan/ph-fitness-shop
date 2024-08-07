@@ -50,11 +50,16 @@ const cartSlice = createSlice({
                 return product;
             });
         },
+
+        clearCart: (state) => {
+            state.products = [];
+        },
     },
 });
 
 const cartReducer = cartSlice.reducer;
 export default cartReducer;
 
-export const { addToCart, deleteCart, updateCart } = cartSlice.actions;
+export const { addToCart, deleteCart, updateCart, clearCart } =
+    cartSlice.actions;
 export const getCartProducts = (state: RootState) => state.cart.products;

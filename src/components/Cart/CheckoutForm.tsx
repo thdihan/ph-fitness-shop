@@ -71,7 +71,7 @@ const CheckoutForm = ({ state, dispatch }) => {
                             name="payment"
                             id="payment"
                             className="border-2 border-gray-400 p-2 rounded-md"
-                            checked={state.payment === "cash"}
+                            checked={state.payment.method === "cash"}
                             onChange={() =>
                                 dispatch({ type: "payment", value: "cash" })
                             }
@@ -85,7 +85,7 @@ const CheckoutForm = ({ state, dispatch }) => {
                             name="payment"
                             id="payment"
                             className="border-2 border-gray-400 p-2 rounded-md"
-                            checked={state.payment === "stripe"}
+                            checked={state.payment.method === "stripe"}
                             onChange={() =>
                                 dispatch({ type: "payment", value: "stripe" })
                             }

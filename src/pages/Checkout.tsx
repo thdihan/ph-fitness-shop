@@ -3,7 +3,7 @@ import { TbShoppingCartFilled } from "react-icons/tb";
 import { SizeType, TCartProduct } from "../types";
 import CheckoutForm from "../components/Cart/CheckoutForm";
 import CartSummery from "../components/Cart/CartSummery";
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useAppSelector } from "../redux/hooks";
 import { getCartProducts } from "../redux/features/cart/cartSlice";
 import StripeCheckout from "../components/Checkout/StripeCheckout";
@@ -13,7 +13,11 @@ type TInitialState = {
     email: string;
     contact: string;
     address: string;
-    payment: string;
+    total: number;
+    payment: {
+        method: string;
+        status: "done" | "pending";
+    };
     products: TCartProduct[];
 };
 const initialState: TInitialState = {
@@ -21,11 +25,21 @@ const initialState: TInitialState = {
     email: "",
     contact: "",
     address: "",
-    payment: "",
+    total: 0,
+    payment: {
+        method: "",
+        status: "pending",
+    },
     products: [],
 };
 
 const reducer = (state: any, action: any) => {
+    if (action.type === "payment") {
+        return {
+            ...state,
+            payment: { method: action.value, status: "pending" },
+        };
+    }
     return { ...state, [action.type]: action.value };
 };
 const Checkout = () => {
@@ -34,17 +48,19 @@ const Checkout = () => {
 
     const cartProducts = useAppSelector(getCartProducts);
 
+    useEffect(() => {
+        dispatch({ type: "products", value: cartProducts });
+    }, [cartProducts]);
+
     const handleCheckout = () => {
-        console.log("Order Confirmed");
-        const order = { ...state, products: cartProducts };
-        console.log(order);
-        if (state.payment === "stripe") setIsModalOpen(true);
+        setIsModalOpen(true);
     };
     return (
         <div className="px-4 md:px-8 lg:px-16  py-6">
             <StripeCheckout
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
+                order={state}
             />
             <div>
                 <h2
