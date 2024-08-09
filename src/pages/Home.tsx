@@ -5,7 +5,7 @@ import FeaturedProducts from "../components/Products/FeaturedProducts";
 
 const Home = () => {
     return (
-        <div className="">
+        <div className="scroll-smooth">
             <Hero />
             <FeaturedProducts />
             <Benefits />

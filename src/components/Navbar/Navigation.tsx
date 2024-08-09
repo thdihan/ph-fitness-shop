@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { navItems } from "./navItems";
+import { HashLink } from "react-router-hash-link";
 
 const Navigation = () => {
     const [navOpen, setNavOpen] = useState(false);
@@ -24,9 +25,25 @@ const Navigation = () => {
                         className="inline-block px-6 py-3 hover:bg-[#FF5252] hover:text-white transition-all"
                         onClick={() => setNavOpen((prev) => !prev)}
                     >
-                        <Link to={item?.path} className="text-md font-medium">
+                        {item.path.startsWith("/#") ? (
+                            <HashLink
+                                smooth
+                                to={item?.path}
+                                className="text-md font-medium"
+                            >
+                                {item.name}
+                            </HashLink>
+                        ) : (
+                            <Link
+                                to={item?.path}
+                                className="text-md font-medium"
+                            >
+                                {item.name}
+                            </Link>
+                        )}
+                        {/* <Link to={item?.path} className="text-md font-medium">
                             {item.name}
-                        </Link>
+                        </Link> */}
                     </li>
                 ))}
             </ul>

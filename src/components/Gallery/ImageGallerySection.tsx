@@ -40,7 +40,10 @@ const images = [
 
 const ImageGallerySection = () => {
     return (
-        <div className="bg-white grid grid-cols-4 gap-2 py-6 px-6">
+        <div
+            id="gallery-section"
+            className="bg-white grid grid-cols-4 gap-2 py-6 px-6"
+        >
             <div className="h-[400px] hover:scale-110 transition-all duration-300 rounded-lg">
                 <img
                     src={images[0].src}
