@@ -5,10 +5,10 @@ import { useGetAllProductsQuery } from "../redux/api/baseApi";
 import { TProduct } from "../types";
 import { useParams } from "react-router-dom";
 
-const AllProducts = () => {
+const CategoryProducts = () => {
     const { category } = useParams<{ category: string }>();
     const { data } = useGetAllProductsQuery(category);
-    console.log("Products", data);
+    console.log("Products", category);
 
     const [filteredList, setFilteredList] = useState<TProduct[]>([]);
     const [categoryFilter, setCategoryFilter] = useState<string[] | null>([]);
@@ -52,10 +52,12 @@ const AllProducts = () => {
                 categoryFilter={categoryFilter}
                 setCategoryFilter={setCategoryFilter}
             />
-            <h2 className="text-xl font-bold text-[#FF5252]">All Product</h2>
+            <h2 className="text-xl font-bold text-[#FF5252]">
+                Category: {category}
+            </h2>
             <ProductList products={filteredList} />
         </div>
     );
 };
 
-export default AllProducts;
+export default CategoryProducts;

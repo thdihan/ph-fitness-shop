@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import trademill from "../../assets/trademill.jpg";
 import { TCategory } from "../../types";
 const CategoryCard = ({ category }: { category: TCategory }) => {
+    const navigate = useNavigate();
     return (
-        <div className="h-[200px] w-[200px] inline-flex flex-col justify-between py-4 align-middle mr-5 bg-white">
+        <div
+            onClick={() => navigate(`/category-products/${category.name}`)}
+            className="h-[200px] w-[200px] inline-flex flex-col justify-between py-4 align-middle mr-5 bg-white cursor-pointer"
+        >
             <div className="flex justify-center">
                 <img
                     src={category?.image || trademill}
