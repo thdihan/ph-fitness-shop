@@ -12,6 +12,10 @@ const Searchbar = ({
     setSortFilter,
     categoryFilter,
     setCategoryFilter,
+    minValue,
+    setMinValue,
+    maxValue,
+    setMaxValue,
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -94,6 +98,38 @@ const Searchbar = ({
                                 onChange={(e) => setSortFilter("high")}
                             />
                             <label htmlFor="lowToHigh">High to Low</label>
+                        </div>
+                    </form>
+                </div>
+
+                <div className="mt-6">
+                    <h3 className="font-semibold">Price Range</h3>
+                    <form className="flex space-x-3 items-center">
+                        <div className="space-x-2">
+                            <label htmlFor="min">Min</label>
+                            <input
+                                type="number"
+                                name=""
+                                id="min"
+                                className="p-1 border-2 border-gray-400 w-20 rounded-md"
+                                min={0}
+                                max={maxValue}
+                                value={minValue}
+                                onChange={(e) => setMinValue(e.target.value)}
+                            />
+                        </div>
+                        <div className="align-middle">-</div>
+                        <div className="space-x-2">
+                            <label htmlFor="max">Max</label>
+                            <input
+                                type="number"
+                                name=""
+                                id="max"
+                                className="p-1 border-2 border-gray-400 w-20 rounded-md"
+                                min={minValue}
+                                value={maxValue}
+                                onChange={(e) => setMaxValue(e.target.value)}
+                            />
                         </div>
                     </form>
                 </div>

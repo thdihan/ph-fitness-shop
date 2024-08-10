@@ -9,7 +9,6 @@ import ProductManagement from "../pages/ProductManagement";
 import AddProduct from "../pages/AddProduct";
 import UpdateProduct from "../components/ProductManagement/UpdateProduct";
 import ConfirmOrder from "../pages/ConfirmOrder";
-import CategoryProducts from "../pages/CategoryProducts";
 
 const router = createBrowserRouter([
     {
@@ -25,8 +24,8 @@ const router = createBrowserRouter([
                 element: <AllProducts />,
             },
             {
-                path: "/category-products/:category",
-                element: <CategoryProducts />,
+                path: "/all-products/:category",
+                element: <AllProducts />,
             },
             {
                 path: "/products/:id",

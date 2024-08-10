@@ -5,8 +5,8 @@ const CategoryCard = ({ category }: { category: TCategory }) => {
     const navigate = useNavigate();
     return (
         <div
-            onClick={() => navigate(`/category-products/${category.name}`)}
-            className="h-[200px] w-[200px] inline-flex flex-col justify-between py-4 align-middle mr-5 bg-white cursor-pointer"
+            onClick={() => navigate(`/all-products/${category.name}`)}
+            className="h-[200px] w-[200px] rounded-xl inline-flex flex-col justify-between py-4 align-middle mr-5 bg-white cursor-pointer"
         >
             <div className="flex justify-center">
                 <img
