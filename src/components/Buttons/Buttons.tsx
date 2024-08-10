@@ -29,9 +29,8 @@ export const ButtonSecondary = ({
     clickAction,
 }: {
     text: string | ReactNode;
-    clickAction: any;
+    clickAction: () => void; // Specify the type of clickAction as a function that takes no arguments and returns void
 }) => {
-    const navigate = useNavigate();
     return (
         <Button
             type="primary"
@@ -49,9 +48,8 @@ export const ButtonWithoutBorder = ({
     clickAction,
 }: {
     text: string | ReactNode;
-    clickAction: any;
+    clickAction: () => void; // Specify the type of clickAction as a function that takes no arguments and returns void
 }) => {
-    const navigate = useNavigate();
     return (
         <Button
             className=" text-white font-normal"

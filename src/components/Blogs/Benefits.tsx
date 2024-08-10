@@ -13,7 +13,7 @@ const Benefits = () => {
                 </h2>
             </div>
             <div className="px-4 md:px-8 lg:px-16 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-                <div className="bg-white p-8 flex justify-center items-center flex-col space-y-6 h-[400px]">
+                <div className="bg-white p-8 flex justify-center items-center flex-col space-y-6 lg:h-[400px] text-sm">
                     <div className="flex justify-center bg-gray-300 w-[100px] p-5 rounded-full">
                         <img src={muscle} alt="" />
                     </div>
@@ -35,7 +35,7 @@ const Benefits = () => {
                 <div className="h-[400px]">
                     <img src={benefit1} alt="" className="w-full h-full" />
                 </div>
-                <div className="bg-white p-8 flex justify-center items-center flex-col space-y-6 h-[400px]">
+                <div className="bg-white p-8 flex justify-center items-center flex-col space-y-6 lg:h-[400px] text-sm">
                     <div className="flex justify-center bg-gray-300 w-[100px] p-5 rounded-full">
                         <img src={healthcare} alt="" />
                     </div>
@@ -57,7 +57,7 @@ const Benefits = () => {
                 <div className="h-[400px]">
                     <img src={gr} alt="" className="w-full h-full" />
                 </div>
-                <div className="bg-white p-8 flex justify-center items-center flex-col space-y-6 h-[400px]">
+                <div className="bg-white p-8 flex justify-center items-center flex-col space-y-6 lg:h-[400px] text-sm">
                     <div className="flex justify-center bg-gray-300 w-[100px] p-5 rounded-full">
                         <img src={slimCare} alt="" />
                     </div>

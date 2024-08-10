@@ -22,3 +22,9 @@ export type TCartProduct = {
     qty: number;
     price: number;
 };
+
+export type TCategory = {
+    _id: string;
+    name: string;
+    image: string;
+};

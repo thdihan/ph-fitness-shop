@@ -6,10 +6,11 @@ import { toast } from "sonner";
 
 const AddCategoryModal = ({ isModalOpen, setIsModalOpen }) => {
     const [category, setCategory] = useState("");
+    const [image, setImage] = useState("");
     const [addCategory] = useAddNewCategoryMutation();
     const handleOk = async () => {
         console.log("Category", category);
-        await addCategory({ category });
+        await addCategory({ category, image });
         setIsModalOpen(false);
         toast.success("Category Added Successfully");
     };
@@ -29,8 +30,16 @@ const AddCategoryModal = ({ isModalOpen, setIsModalOpen }) => {
                 <input
                     type="text"
                     className="p-2 border-2 w-full border-gray-400 rounded-md"
+                    placeholder="Category Name"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
+                />
+                <input
+                    type="text"
+                    value={image}
+                    placeholder="Image URL (optional)"
+                    className="p-2 border-2 w-full border-gray-400 rounded-md"
+                    onChange={(e) => setImage(e.target.value)}
                 />
                 <ButtonSecondary text="Add Category" clickAction={handleOk} />
             </div>

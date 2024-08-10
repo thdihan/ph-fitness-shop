@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import { Button } from "antd";
 import { TProduct } from "../../types";
 const ProductCard = ({ product }: { product: TProduct }) => {
     return (
-        <div className="bg-white px-4 py-6 min-h-[300px] space-y-8 flex flex-col justify-between border-2 border-r-0 last:border-r-2">
+        <div className="bg-white px-4 py-6 min-h-[300px] space-y-8 flex flex-col justify-between border-2 border-b-0 last:border-b-2 lg:border-b-2 lg:border-r-0 last:lg:border-r-2">
             <div className="flex justify-center">
                 <img src={product?.image} alt="" className="w-[150px]" />
             </div>

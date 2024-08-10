@@ -1,7 +1,8 @@
 import trademill from "../../assets/trademill.jpg";
-const CategoryCard = ({ category }) => {
+import { TCategory } from "../../types";
+const CategoryCard = ({ category }: { category: TCategory }) => {
     return (
-        <div className="bg-white px-4 py-6 h-[200px] w-[200px] flex items-center justify-center flex-col space-y-6 border-2 border-[#ff525255] inline-flex mr-5 cursor-pointer shadow-lg rounded-xl">
+        <div className="h-[200px] w-[200px] inline-flex flex-col justify-between py-4 align-middle mr-5 bg-white">
             <div className="flex justify-center">
                 <img
                     src={category?.image || trademill}
