@@ -39,6 +39,9 @@ const Searchbar = ({
         setCategoryFilter([]);
         setSortFilter("default");
         setIsModalOpen(false);
+
+        setMinValue(0);
+        setMaxValue(0);
     };
     return (
         <div className="py-6 flex space-x-3 ">

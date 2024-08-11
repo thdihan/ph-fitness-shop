@@ -25,7 +25,7 @@ export const navItems = [
     },
     {
         name: "About",
-        path: "/all-products",
+        path: "/about",
     },
     {
         name: "Contact",
