@@ -12,7 +12,7 @@ const AllProducts = () => {
     console.log("Products", data);
 
     const [filteredList, setFilteredList] = useState<TProduct[]>([]);
-    const [categoryFilter, setCategoryFilter] = useState<string[] | null>(
+    const [categoryFilter, setCategoryFilter] = useState<string[]>(
         category ? [category] : []
     );
     const [sortFilter, setSortFilter] = useState<string>("default");

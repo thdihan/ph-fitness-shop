@@ -1,4 +1,4 @@
-import { Button, Result } from "antd";
+import { Result } from "antd";
 import { ButtonPrimary } from "../components/Buttons/Buttons";
 
 const ConfirmOrder = () => {

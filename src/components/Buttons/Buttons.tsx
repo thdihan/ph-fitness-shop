@@ -1,7 +1,8 @@
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import { SizeType } from "../../types";
 import { useNavigate } from "react-router-dom";
 import { ReactNode } from "react";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const ButtonPrimary = ({
     text,
@@ -27,9 +28,11 @@ export const ButtonPrimary = ({
 export const ButtonSecondary = ({
     text,
     clickAction,
+    loading = false,
 }: {
     text: string | ReactNode;
     clickAction: () => void; // Specify the type of clickAction as a function that takes no arguments and returns void
+    loading?: boolean;
 }) => {
     return (
         <Button
@@ -38,8 +41,17 @@ export const ButtonSecondary = ({
             size={"large" as SizeType}
             danger
             onClick={clickAction}
+            disabled={loading}
         >
-            {text}
+            {loading ? (
+                <Spin
+                    className="text-[#FF5252]"
+                    indicator={<LoadingOutlined spin />}
+                    size="default"
+                />
+            ) : (
+                text
+            )}
         </Button>
     );
 };

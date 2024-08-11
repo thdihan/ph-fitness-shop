@@ -43,7 +43,7 @@ const ProductTable = () => {
             </thead>
 
             <tbody>
-                {data?.data?.map((product) => (
+                {data?.data?.map((product: TProduct) => (
                     <tr className="border-b-2">
                         <td className="p-3 w-[100px]">
                             <img

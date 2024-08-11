@@ -1,4 +1,5 @@
-const CheckoutForm = ({ state, dispatch }) => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const CheckoutForm = ({ state, dispatch }: { state: any; dispatch: any }) => {
     return (
         <form className="flex-[3] space-y-3">
             <div className="flex flex-col">

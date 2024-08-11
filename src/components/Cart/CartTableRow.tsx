@@ -2,16 +2,18 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 import trademill from "../../assets/trademill.jpg";
 import { TCartProduct } from "../../types";
 import { useAppDispatch } from "../../redux/hooks";
-import { deleteCart, updateCart } from "../../redux/features/cart/cartSlice";
+import { updateCart } from "../../redux/features/cart/cartSlice";
+import { LoadingOutlined } from "@ant-design/icons";
 import {
+    ChangeEvent,
     Dispatch,
-    FormEvent,
     SetStateAction,
     useEffect,
     useState,
 } from "react";
 import { toast } from "sonner";
 import { useGetSingleProductQuery } from "../../redux/api/baseApi";
+import { Spin } from "antd";
 const CartTableRow = ({
     product,
     setCheckoutButton,
@@ -36,9 +38,9 @@ const CartTableRow = ({
             console.log("IsAvailable", isAvailable);
             setCheckoutButton((prev: boolean) => prev && isAvailable);
         }
-    }, [productDetails, product]);
+    }, [productDetails, product, setCheckoutButton]);
 
-    const handleCartUpdate = (e: FormEvent) => {
+    const handleCartUpdate = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         if (productDetails?.data?.stock >= parseInt(e.target?.value)) {
@@ -66,22 +68,58 @@ const CartTableRow = ({
             <td className="p-3 w-[100px]">
                 <img src={trademill} alt="" className="w-[125px]" />
             </td>
-            <td className="p-3 w-[100px]">{productDetails?.data?.name}</td>
-            <td className="p-3 w-[50px]">
-                {productDetails?.data?.stock ? (
-                    <p className="bg-green-300 border-2 border-green-500 text-sm font-semibold py-1">
-                        In Stock
-                    </p>
+            <td className="p-3 w-[100px]">
+                {productDetails?.data ? (
+                    productDetails?.data?.name
                 ) : (
-                    <p className="bg-red-300 border-2 border-red-500 text-sm font-semibold py-1">
-                        Stock Out
-                    </p>
+                    <Spin
+                        indicator={<LoadingOutlined spin />}
+                        className="text-[#FF5252]"
+                        size="default"
+                    />
+                )}
+            </td>
+            <td className="p-3 w-[50px]">
+                {productDetails?.data ? (
+                    productDetails?.data?.stock ? (
+                        <p className="bg-green-300 border-2 border-green-500 text-sm font-semibold py-1">
+                            In Stock
+                        </p>
+                    ) : (
+                        <p className="bg-red-300 border-2 border-red-500 text-sm font-semibold py-1">
+                            Stock Out
+                        </p>
+                    )
+                ) : (
+                    <Spin
+                        indicator={<LoadingOutlined spin />}
+                        className="text-[#FF5252]"
+                        size="default"
+                    />
                 )}
             </td>
             <td className="p-3 w-[50px]">{product?.qty}</td>
-            <td className="p-3 w-[50px]">{productDetails?.data?.price}</td>
             <td className="p-3 w-[50px]">
-                {product?.qty * productDetails?.data?.price}
+                {productDetails?.data ? (
+                    productDetails?.data?.price
+                ) : (
+                    <Spin
+                        indicator={<LoadingOutlined spin />}
+                        className="text-[#FF5252]"
+                        size="default"
+                    />
+                )}
+            </td>
+            <td className="p-3 w-[50px]">
+                {productDetails?.data ? (
+                    product?.qty * productDetails?.data?.price
+                ) : (
+                    <Spin
+                        indicator={<LoadingOutlined spin />}
+                        className="text-[#FF5252]"
+                        size="default"
+                    />
+                )}
             </td>
 
             <td className="p-3 w-[100px]">

@@ -16,7 +16,7 @@ const Cart = () => {
     console.log("CheckoutButton,", checkoutButton);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [itemToDelete, setItemToDelete] = useState("");
+    const [itemToDelete, setItemToDelete] = useState<string>("");
 
     return (
         <div className="px-4 md:px-8 lg:px-16 py-6">
@@ -50,14 +50,15 @@ const Cart = () => {
                         </thead>
 
                         <tbody>
-                            {products?.map((product) => (
-                                <CartTableRow
-                                    product={product}
-                                    setCheckoutButton={setCheckoutButton}
-                                    showModal={setIsModalOpen}
-                                    setItemToDelete={setItemToDelete}
-                                />
-                            ))}
+                            {products.length > 0 &&
+                                products?.map((product) => (
+                                    <CartTableRow
+                                        product={product}
+                                        setCheckoutButton={setCheckoutButton}
+                                        showModal={setIsModalOpen}
+                                        setItemToDelete={setItemToDelete}
+                                    />
+                                ))}
 
                             {/* <CartTableRow />
                             <CartTableRow /> */}

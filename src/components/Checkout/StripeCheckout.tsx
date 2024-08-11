@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import {
     CardElement,
     Elements,
@@ -7,18 +7,27 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { ButtonSecondary, ButtonWithoutBorder } from "../Buttons/Buttons";
 import { useCreateOrderMutation } from "../../redux/api/baseApi";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { clearCart } from "../../redux/features/cart/cartSlice";
+import { TOrder } from "../../types";
 
 const stripePromise = loadStripe(
     "pk_test_51Pkp2rLw1MUS3mw4qjto8n6YtmTF9VG6SWDtwHO4ULFq0GOKhYStOeSPmd6euEOJyUfIhFUEBKW71p0h4enwEr3Q00AoaW6cOx"
 );
-const StripeCheckout = ({ isModalOpen, setIsModalOpen, order }) => {
+const StripeCheckout = ({
+    isModalOpen,
+    setIsModalOpen,
+    order,
+}: {
+    isModalOpen: boolean;
+    setIsModalOpen: (isOpen: boolean) => void;
+    order: TOrder;
+}) => {
     const [createOrder] = useCreateOrderMutation();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -89,12 +98,17 @@ const StripeCheckout = ({ isModalOpen, setIsModalOpen, order }) => {
     );
 };
 
-const CheckoutForm = ({ order, setIsModalOpen }) => {
+const CheckoutForm = ({
+    order,
+    setIsModalOpen,
+}: {
+    order: TOrder;
+    setIsModalOpen: (isOpen: boolean) => void;
+}) => {
     const stripe = useStripe();
     const elements = useElements();
 
     const [clientSecret, setClientSecret] = useState("");
-    const [loading, isLoading] = useState(false);
 
     const [createOrder] = useCreateOrderMutation();
     const dispatch = useAppDispatch();
@@ -106,16 +120,19 @@ const CheckoutForm = ({ order, setIsModalOpen }) => {
             (acc: number, product) => acc + product.price * product.qty,
             0
         );
-        fetch("http://localhost:5001/create-payment-intent", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ price: totalPrice }),
-        })
+        fetch(
+            "https://ph-fitness-shop-server.vercel.app/create-payment-intent",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ price: totalPrice }),
+            }
+        )
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
     }, [order]);
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent) => {
         // Block native form submission.
         event.preventDefault();
 
@@ -146,15 +163,17 @@ const CheckoutForm = ({ order, setIsModalOpen }) => {
             console.log("[PaymentMethod]", paymentMethod);
         }
 
-        const { paymentIntent, error: paymentError } =
-            await stripe.confirmCardPayment(clientSecret, {
+        const { paymentIntent } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
                 payment_method: {
                     card,
                     billing_details: {
                         name: "Jenny Rosen",
                     },
                 },
-            });
+            }
+        );
 
         console.log("Payment Intent", paymentIntent);
         if (paymentIntent?.status === "succeeded") {

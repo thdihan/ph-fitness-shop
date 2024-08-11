@@ -4,6 +4,7 @@ import { TbAdjustmentsHorizontal } from "react-icons/tb";
 import { useGetAllCategoriesQuery } from "../../redux/api/baseApi";
 
 import { RxCross1 } from "react-icons/rx";
+import { TCategory } from "../../types";
 
 const Searchbar = ({
     searchFilter,
@@ -16,6 +17,17 @@ const Searchbar = ({
     setMinValue,
     maxValue,
     setMaxValue,
+}: {
+    searchFilter: string;
+    setSearchFilter: (value: string) => void;
+    sortFilter: string;
+    setSortFilter: (value: string) => void;
+    categoryFilter: string[];
+    setCategoryFilter: (value: string[]) => void;
+    minValue: number;
+    setMinValue: (value: number) => void;
+    maxValue: number;
+    setMaxValue: (value: number) => void;
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -87,7 +99,7 @@ const Searchbar = ({
                                 id="lowToHigh"
                                 checked={sortFilter === "low"}
                                 value="low"
-                                onChange={(e) => setSortFilter("low")}
+                                onChange={() => setSortFilter("low")}
                             />
                             <label htmlFor="lowToHigh">Low to High</label>
                         </div>
@@ -98,7 +110,7 @@ const Searchbar = ({
                                 id="highToLow"
                                 value="high"
                                 checked={sortFilter === "high"}
-                                onChange={(e) => setSortFilter("high")}
+                                onChange={() => setSortFilter("high")}
                             />
                             <label htmlFor="lowToHigh">High to Low</label>
                         </div>
@@ -118,7 +130,9 @@ const Searchbar = ({
                                 min={0}
                                 max={maxValue}
                                 value={minValue}
-                                onChange={(e) => setMinValue(e.target.value)}
+                                onChange={(e) =>
+                                    setMinValue(Number(e.target.value))
+                                }
                             />
                         </div>
                         <div className="align-middle">-</div>
@@ -131,7 +145,9 @@ const Searchbar = ({
                                 className="p-1 border-2 border-gray-400 w-20 rounded-md"
                                 min={minValue}
                                 value={maxValue}
-                                onChange={(e) => setMaxValue(e.target.value)}
+                                onChange={(e) =>
+                                    setMaxValue(Number(e.target.value))
+                                }
                             />
                         </div>
                     </form>
@@ -139,7 +155,7 @@ const Searchbar = ({
                 <div className="mt-6">
                     <h3 className="font-semibold">Categories</h3>
                     <form>
-                        {categories?.data?.map((category) => (
+                        {categories?.data?.map((category: TCategory) => (
                             <div className="flex items-center space-x-2">
                                 <input
                                     type="checkbox"
@@ -147,7 +163,7 @@ const Searchbar = ({
                                     checked={categoryFilter?.includes(
                                         category.name
                                     )}
-                                    onChange={(e) => {
+                                    onChange={() => {
                                         if (
                                             categoryFilter?.includes(
                                                 category.name

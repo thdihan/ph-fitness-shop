@@ -1,13 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { ButtonSecondary } from "../Buttons/Buttons";
 import AddCategoryModal from "./AddCategoryModal";
 import { useGetAllCategoriesQuery } from "../../redux/api/baseApi";
+import { TProduct } from "../../types";
 
 const AddProductForm = ({
     handleSubmit,
     product,
     dispatch,
     update = false,
+    isLoading,
+}: {
+    handleSubmit: () => void;
+    product: TProduct;
+    dispatch: any;
+    update?: boolean;
+    isLoading?: boolean;
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { data: categories } = useGetAllCategoriesQuery(undefined);
@@ -84,9 +93,15 @@ const AddProductForm = ({
                             })
                         }
                     >
+                        <option value="default">Select a Category</option>
                         {categories?.data?.map(
                             (category: { _id: string; name: string }) => (
-                                <option value={category.name}>
+                                <option
+                                    value={category.name}
+                                    selected={
+                                        category.name === product.category
+                                    }
+                                >
                                     {category.name}
                                 </option>
                             )
@@ -122,6 +137,7 @@ const AddProductForm = ({
                     <ButtonSecondary
                         text={update ? "Update Product" : "Add Product"}
                         clickAction={handleSubmit}
+                        loading={isLoading}
                     />
                 </div>
             </form>

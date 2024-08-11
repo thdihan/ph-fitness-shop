@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "antd";
 import { TbShoppingCartFilled } from "react-icons/tb";
 import { SizeType, TCartProduct } from "../types";
@@ -33,7 +34,12 @@ const initialState: TInitialState = {
     products: [],
 };
 
-const reducer = (state: any, action: any) => {
+type TAction = {
+    type: string;
+    value: string | number | TCartProduct[];
+};
+
+const reducer = (state: any, action: TAction) => {
     if (action.type === "payment") {
         return {
             ...state,
@@ -43,7 +49,11 @@ const reducer = (state: any, action: any) => {
     return { ...state, [action.type]: action.value };
 };
 const Checkout = () => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(
+        reducer,
+        initialState as TInitialState,
+        undefined
+    );
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const cartProducts = useAppSelector(getCartProducts);

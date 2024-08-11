@@ -1,4 +1,4 @@
-import { Avatar, Badge, Button, ConfigProviderProps } from "antd";
+import { Badge, Button, ConfigProviderProps } from "antd";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";

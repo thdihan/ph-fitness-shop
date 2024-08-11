@@ -1,14 +1,21 @@
-import { FormEvent, useRef, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { DragEvent, FormEvent, useRef, useState } from "react";
 
-const ImageUploader = ({ image, setImage }) => {
-    const inputRef = useRef(null);
+const ImageUploader = ({
+    image,
+    setImage,
+}: {
+    image: { file: any; url: string };
+    setImage: (image: { file: any; url: string }) => void;
+}) => {
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const [dragging, setDragging] = useState(false);
     const onSelectClick = () => {
         inputRef?.current?.click();
     };
 
-    const onDraging = (e) => {
+    const onDraging = (e: DragEvent) => {
         e.preventDefault();
         setDragging(true);
         e.dataTransfer.dropEffect = "copy";
@@ -18,7 +25,7 @@ const ImageUploader = ({ image, setImage }) => {
         setDragging(false);
     };
 
-    const onDrop = (e: FormEvent) => {
+    const onDrop = (e: DragEvent) => {
         e.preventDefault();
         setDragging(false);
         console.log(e.dataTransfer.files);
@@ -29,7 +36,10 @@ const ImageUploader = ({ image, setImage }) => {
     };
 
     const deleteImage = () => {
-        setImage({});
+        setImage({
+            file: undefined,
+            url: "",
+        });
     };
     return (
         <div className="flex-1 mt-3">
@@ -80,12 +90,16 @@ const ImageUploader = ({ image, setImage }) => {
                     id=""
                     className="hidden"
                     ref={inputRef}
-                    onChange={(e: FormEvent) =>
-                        setImage({
-                            file: e.target.files[0],
-                            url: URL.createObjectURL(e.target.files[0]),
-                        })
-                    }
+                    onChange={(e: FormEvent) => {
+                        const inputElement = e.target as HTMLInputElement;
+                        const file = inputElement.files?.[0];
+                        if (file) {
+                            setImage({
+                                file,
+                                url: URL.createObjectURL(file),
+                            });
+                        }
+                    }}
                 />
             </div>
         </div>

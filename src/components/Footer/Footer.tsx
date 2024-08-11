@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Calendar from "react-calendar";
 import { navItems } from "../Navbar/navItems";
 import { Link } from "react-router-dom";
@@ -12,7 +11,8 @@ import {
 import { HashLink } from "react-router-hash-link";
 
 const Footer = () => {
-    const [value, setValue] = useState(new Date());
+    // const [value, setValue] = useState(new Date());
+    const value = new Date();
     return (
         <div className="bg-black">
             <div className="container mx-auto flex w-full flex-col lg:items-center space-y-10 p-10 lg:text-left lg:max-w-[1200px] lg:flex-row lg:justify-between lg:space-x-16 lg:space-y-0">

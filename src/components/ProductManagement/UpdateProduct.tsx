@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
-import { TProduct } from "../../types";
+
 import {
     useGetSingleProductQuery,
     useUpdateProductMutation,

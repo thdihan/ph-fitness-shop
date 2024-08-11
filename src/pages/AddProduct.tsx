@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ImageUploader from "../components/ProductManagement/ImageUploader";
 import AddProductForm from "../components/ProductManagement/AddProductForm";
 import { useReducer, useState } from "react";
@@ -36,6 +37,7 @@ const productReducer = (state: any, action: any) => {
         case "stock":
             return { ...state, stock: action.payload };
         case "category":
+            console.log("Category", action.payload);
             return { ...state, category: action.payload };
         case "image":
             return { ...state, image: action.payload };
@@ -46,7 +48,7 @@ const productReducer = (state: any, action: any) => {
 const AddProduct = () => {
     const navigate = useNavigate();
     const [image, setImage] = useState(initialImage);
-    const [url, setUrl] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const [product, dispatch] = useReducer(productReducer, initialProduct);
 
@@ -61,6 +63,19 @@ const AddProduct = () => {
         data.append("cloud_name", "dyunyevmc");
 
         try {
+            //  validate inputs
+            if (
+                !product.name ||
+                !product.description ||
+                !product.price ||
+                !product.stock ||
+                product.category === "" ||
+                !image.url
+            ) {
+                toast.error("All fields are required");
+                throw new Error("All fields are required");
+            }
+            setIsLoading(true);
             const res = await fetch(
                 "https://api.cloudinary.com/v1_1/dyunyevmc/image/upload",
                 {
@@ -71,7 +86,7 @@ const AddProduct = () => {
 
             const file = await res.json();
             console.log("File", file);
-            setUrl(file.url);
+
             toast.success("Image uploaded successfully");
 
             // Upload product
@@ -83,8 +98,10 @@ const AddProduct = () => {
             console.log("New Product", newProduct);
             await addNewProduct(newProduct);
             toast.success("Product added successfully");
+            setIsLoading(false);
             navigate("/product-management");
         } catch (error) {
+            setIsLoading(false);
             toast.error("Failed to upload image");
         }
     };
@@ -102,6 +119,7 @@ const AddProduct = () => {
                     handleSubmit={handleSubmit}
                     product={product}
                     dispatch={dispatch}
+                    isLoading={isLoading}
                 />
             </div>
         </div>
