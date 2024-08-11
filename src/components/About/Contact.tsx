@@ -1,4 +1,8 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 const Contact = () => {
+    useEffect(() => AOS.init(), []);
     return (
         <div className="py-6 my-6">
             {/* Contact Information: Provide detailed contact information and
@@ -11,7 +15,12 @@ const Contact = () => {
                 </p>
 
                 <div className="flex flex-col lg:flex-row space-x-4 py-6">
-                    <div className="flex-1 px-6">
+                    <div
+                        className="flex-1 px-6"
+                        data-aos="fade-right"
+                        data-aos-easing="ease-out-cubic"
+                        data-aos-duration="600"
+                    >
                         <form className="flex flex-col space-y-4">
                             <div>
                                 <input
@@ -39,7 +48,12 @@ const Contact = () => {
                         </form>
                     </div>
 
-                    <div className="flex-1 px-6">
+                    <div
+                        className="flex-1 px-6"
+                        data-aos="fade-left"
+                        data-aos-easing="ease-out-cubic"
+                        data-aos-duration="600"
+                    >
                         <div className="flex-1 space-y-2">
                             <h2 className="text-2xl font-semibold lg:text-left">
                                 Fitness Shop

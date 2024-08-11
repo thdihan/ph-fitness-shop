@@ -1,10 +1,19 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 const TeamCard = ({
     member,
 }: {
     member: { name: string; designation: string; image: string };
 }) => {
+    useEffect(() => AOS.init(), []);
     return (
-        <div className="p-6 flex flex-col items-center shadow-xl border-2 border-gray-200 rounded-lg space-y-4">
+        <div
+            className="p-6 flex flex-col items-center shadow-xl border-2 border-gray-200 rounded-lg space-y-4"
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="1000"
+        >
             <div className="rounded-full size-32">
                 <img
                     className="rounded-full w-full h-full object-cover"

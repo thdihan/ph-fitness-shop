@@ -1,6 +1,15 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 const Overview = () => {
+    useEffect(() => AOS.init(), []);
     return (
-        <div className="rounded-xl my-6 py-6 px-6 space-y-4 bg-[#ff525248]">
+        <div
+            data-aos="zoom-in"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="600"
+            className="rounded-xl my-6 py-6 px-6 space-y-4 bg-[#ff525248]"
+        >
             <h2 className="text-4xl font-bold text-center">
                 <span className="text-[#FF5252]">Fitness</span> Shop
             </h2>
