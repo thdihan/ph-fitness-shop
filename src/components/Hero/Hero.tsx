@@ -5,6 +5,8 @@ import { useRef } from "react";
 import { useGetAllCategoriesQuery } from "../../redux/api/baseApi";
 import { ButtonPrimary } from "../Buttons/Buttons";
 import { TCategory } from "../../types";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
 
 const Hero = () => {
     const { data: categories } = useGetAllCategoriesQuery(undefined);
@@ -41,18 +43,29 @@ const Hero = () => {
                     >
                         <BiSolidLeftArrow className="mr-1 text-sm" />
                     </div>
-                    <div
-                        ref={scrollRef}
-                        className="py-6 whitespace-nowrap overflow-hidden scroll-smooth"
-                    >
-                        {categories?.data?.map((category: TCategory) => (
-                            <CategoryCard
-                                key={category._id}
-                                category={category}
+
+                    {categories?.data ? (
+                        <div
+                            ref={scrollRef}
+                            className="py-6 whitespace-nowrap overflow-hidden scroll-smooth"
+                        >
+                            {categories?.data?.map((category: TCategory) => (
+                                <CategoryCard
+                                    key={category._id}
+                                    category={category}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="py-6 flex justify-center h-[248px] items-center">
+                            <Spin
+                                className="text-[#FF5252]"
+                                indicator={<LoadingOutlined spin />}
+                                size="large"
                             />
-                        ))}
-                        {/* <CategoryCard /> */}
-                    </div>
+                        </div>
+                    )}
+
                     <div
                         className="absolute top-[45%] -right-4 z-50 bg-[#FF5252] text-white text-sm px-1.5 py-2 rounded-full flex justify-center items-center cursor-pointer"
                         onClick={() => onClickScroll(1)}

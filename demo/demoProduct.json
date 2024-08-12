@@ -1,0 +1,310 @@
+[
+    {
+        "name": "Treadmills",
+        "description": "Brand: Yejian\nModel: DK05AK\nMade in: China\nPower: 1.75HP (Six-Level Shock Absorption)\nSpeed: 0.8-16km/h\nAuxiliary Folding\nIncline: 3% to 5%\nPanel Design: LCD Display, Time, Speed, Distance, Calories and Heat Rate.\nWalking Area L* W: 1240mm*430mm\nRun Board Thickness: 15mm\nRun Surface Thickness: 1.8mm\nAllowable Weight: 110kgs\nTime: 00:00-99:59Min\nProgram: P1-P12\nCalories: 0-999%\nExternally connected with MP3.\nHigh-fidelity audio\nAir Cylinder\nDouble-layer running board.\nCertificate: CE,ROHS\nWarranty: One Year Home Service + Parts",
+        "price": 1000,
+        "stock": 5,
+        "category": "Cardio Equipment"
+    },
+    {
+        "name": "Ellipticals",
+        "description": "Brand: Schwinn\nModel: 470\nMade in: USA\nResistance Levels: 25\nStride Length: 20\"\nDisplay: DualTrack LCD\nFeatures: Bluetooth Connectivity, Heart Rate Monitor\nWarranty: Ten Years Frame",
+        "price": 1200,
+        "stock": 3,
+        "category": "Cardio Equipment"
+    },
+    {
+        "name": "Stationary Bikes",
+        "description": "Brand: Peloton\nModel: Bike+\nMade in: USA\nResistance Levels: 100\nDisplay: 23.8\" HD Touchscreen\nFeatures: Rotating Screen, Built-in Speakers\nWarranty: Twelve Months",
+        "price": 1500,
+        "stock": 7,
+        "category": "Cardio Equipment"
+    },
+    {
+        "name": "Rowing Machines",
+        "description": "Brand: Concept2\nModel: Model D\nMade in: USA\nResistance: Air\nMonitor: PM5 Performance Monitor\nFeatures: Adjustable Footrests, Ergonomic Handle\nWarranty: Five Years Frame",
+        "price": 900,
+        "stock": 10,
+        "category": "Cardio Equipment"
+    },
+    {
+        "name": "Stair Climbers",
+        "description": "Brand: Bowflex\nModel: Max Trainer M6\nMade in: USA\nResistance Levels: 16\nDisplay: Interactive Backlit Display\nFeatures: Bluetooth Connectivity, Heart Rate Monitor\nWarranty: Three Years",
+        "price": 800,
+        "stock": 4,
+        "category": "Cardio Equipment"
+    },
+    {
+        "name": "Dumbbells",
+        "description": "Brand: Bowflex\nModel: SelectTech 552\nMade in: USA\nWeight Range: 5-52.5 lbs\nAdjustment: Quick and Easy Weight Selection\nDesign: Durable Molding for Smooth Lift-Off\nHandle: Comfortable and Ergonomic\nStorage: Compact Design\nWarranty: Two Years",
+        "price": 300,
+        "stock": 20,
+        "category": "Strength Training"
+    },
+    {
+        "name": "Barbells",
+        "description": "Brand: Rogue\nModel: Ohio Bar\nMade in: USA\nWeight: 20kg\nMaterial: Stainless Steel\nFeatures: Dual Knurl Marks, Bronze Bushings\nWarranty: Lifetime",
+        "price": 250,
+        "stock": 15,
+        "category": "Strength Training"
+    },
+    {
+        "name": "Kettlebells",
+        "description": "Brand: ONNIT\nModel: Primal Kettlebells\nMade in: USA\nWeight Options: 18-90 lbs\nMaterial: Cast Iron\nDesign: Primal Animal Faces\nWarranty: One Year",
+        "price": 80,
+        "stock": 25,
+        "category": "Strength Training"
+    },
+    {
+        "name": "Weight Plates",
+        "description": "Brand: CAP Barbell\nModel: Olympic 2-Inch\nMade in: China\nWeight Options: 2.5-45 lbs\nMaterial: Solid Cast Iron\nFinish: Baked Enamel\nWarranty: One Year",
+        "price": 100,
+        "stock": 30,
+        "category": "Strength Training"
+    },
+    {
+        "name": "Resistance Bands",
+        "description": "Brand: Fit Simplify\nModel: Resistance Loop Bands\nMade in: USA\nMaterial: Natural Latex\nResistance Levels: Light, Medium, Heavy, X-Heavy\nFeatures: Skin-Friendly, Durable\nWarranty: Lifetime",
+        "price": 20,
+        "stock": 50,
+        "category": "Strength Training"
+    },
+    {
+        "name": "Yoga Mats",
+        "description": "Brand: Manduka\nModel: PROlite\nMade in: Germany\nMaterial: PVC\nDimensions: 71\" x 24\"\nThickness: 4.7mm\nWeight: 4.0 lbs\nFeatures: Closed-Cell Surface, Slip-Resistant\nCare: Easy to Clean\nWarranty: Lifetime",
+        "price": 90,
+        "stock": 15,
+        "category": "Yoga and Pilates"
+    },
+    {
+        "name": "Pilates Reformers",
+        "description": "Brand: Balanced Body\nModel: Allegro 2\nMade in: USA\nMaterial: Aluminum Frame\nDimensions: 93\" x 27\"\nFeatures: Adjustable Footbar, Removable Shoulder Rests\nWarranty: Five Years",
+        "price": 3000,
+        "stock": 5,
+        "category": "Yoga and Pilates"
+    },
+    {
+        "name": "Yoga Blocks",
+        "description": "Brand: Gaiam\nModel: Yoga Block\nMade in: Taiwan\nMaterial: EVA Foam\nDimensions: 9\" x 6\" x 4\"\nFeatures: Lightweight, Durable\nWarranty: One Year",
+        "price": 10,
+        "stock": 100,
+        "category": "Yoga and Pilates"
+    },
+    {
+        "name": "Yoga Straps",
+        "description": "Brand: YogaAccessories\nModel: D-Ring Strap\nMade in: China\nMaterial: Cotton\nLength: 8 Feet\nFeatures: Adjustable Metal D-Ring Buckle\nWarranty: One Year",
+        "price": 8,
+        "stock": 80,
+        "category": "Yoga and Pilates"
+    },
+    {
+        "name": "Pilates Rings",
+        "description": "Brand: ProBody\nModel: Pilates Ring\nMade in: USA\nMaterial: Fiberglass\nDiameter: 14\"\nFeatures: Dual-Grip Foam Handles\nWarranty: One Year",
+        "price": 25,
+        "stock": 60,
+        "category": "Yoga and Pilates"
+    },
+    {
+        "name": "Medicine Balls",
+        "description": "Brand: TRX\nModel: Slam Ball\nMade in: USA\nWeight Options: 6-50 lbs\nMaterial: Durable Rubber Shell\nDesign: Textured Surface for Grip\nUsage: High-Impact Workouts\nWarranty: One Year",
+        "price": 40,
+        "stock": 30,
+        "category": "Functional Training"
+    },
+    {
+        "name": "Battle Ropes",
+        "description": "Brand: Onnit\nModel: Battle Rope\nMade in: USA\nLength: 50 Feet\nDiameter: 1.5\"\nMaterial: Poly Dacron\nFeatures: Heat-Shrink Handles\nWarranty: One Year",
+        "price": 100,
+        "stock": 10,
+        "category": "Functional Training"
+    },
+    {
+        "name": "Sandbags",
+        "description": "Brand: Ultimate Sandbag\nModel: Training Sandbag\nMade in: USA\nWeight Options: 20-80 lbs\nMaterial: Heavy-Duty Shell\nFeatures: Multiple Handles, Adjustable Weight\nWarranty: One Year",
+        "price": 70,
+        "stock": 20,
+        "category": "Functional Training"
+    },
+    {
+        "name": "Plyometric Boxes",
+        "description": "Brand: Rogue\nModel: Wood Plyo Box\nMade in: USA\nHeight Options: 12\", 18\", 24\", 30\"\nMaterial: Plywood\nFeatures: Rounded Edges, Internal Bracing\nWarranty: One Year",
+        "price": 150,
+        "stock": 10,
+        "category": "Functional Training"
+    },
+    {
+        "name": "Suspension Trainers",
+        "description": "Brand: TRX\nModel: Pro4\nMade in: USA\nMaterial: Industrial-Grade Webbing\nFeatures: Adjustable Straps, Door Anchor\nWarranty: One Year",
+        "price": 200,
+        "stock": 25,
+        "category": "Functional Training"
+    },
+    {
+        "name": "Multi-Gyms",
+        "description": "Brand: Marcy\nModel: MWM-988\nMade in: China\nWeight Stack: 150 lbs\nExercises: Over 36 Options\nFeatures: Dual-Action Press Arms, Leg Developer\nFrame: Heavy-Duty Steel\nWarranty: Two Years",
+        "price": 700,
+        "stock": 5,
+        "category": "Home Gym Equipment"
+    },
+    {
+        "name": "Power Racks",
+        "description": "Brand: Rep Fitness\nModel: PR-1100\nMade in: USA\nMaterial: 14-Gauge Steel\nHeight: 84\"\nWeight Capacity: 700 lbs\nFeatures: Multi-Grip Pull-Up Bar\nWarranty: Lifetime",
+        "price": 400,
+        "stock": 8,
+        "category": "Home Gym Equipment"
+    },
+    {
+        "name": "Smith Machines",
+        "description": "Brand: Force USA\nModel: G3\nMade in: USA\nMaterial: Heavy-Duty Steel\nWeight Capacity: 1000 lbs\nFeatures: Multi-Functional System\nWarranty: Lifetime Frame",
+        "price": 1500,
+        "stock": 3,
+        "category": "Home Gym Equipment"
+    },
+    {
+        "name": "Adjustable Benches",
+        "description": "Brand: Rogue\nModel: AB-3\nMade in: USA\nMaterial: 11-Gauge Steel\nAdjustments: 50+ Seat and Back Positions\nFeatures: Wheels for Mobility\nWarranty: Lifetime",
+        "price": 500,
+        "stock": 10,
+        "category": "Home Gym Equipment"
+    },
+    {
+        "name": "Compact Gyms",
+        "description": "Brand: Bowflex\nModel: PR3000\nMade in: USA\nResistance: 210 lbs\nExercises: Over 50 Options\nFeatures: No Cable Changes\nWarranty: Seven Years Frame",
+        "price": 900,
+        "stock": 7,
+        "category": "Home Gym Equipment"
+    },
+    {
+        "name": "Workout Gloves",
+        "description": "Brand: Harbinger\nModel: Pro WristWrap\nMade in: China\nMaterial: Leather\nFeatures: Integrated Wrist Wraps, Vented Palm\nSizes: S, M, L, XL\nWarranty: One Year",
+        "price": 20,
+        "stock": 40,
+        "category": "Fitness Accessories"
+    },
+    {
+        "name": "Foam Rollers",
+        "description": "Brand: TriggerPoint\nModel: GRID\nMade in: USA\nMaterial: EVA Foam\nDimensions: 13\" x 5.5\"\nDesign: Multi-Density, Hollow Core\nUsage: Pre- and Post-Workout Recovery\nWarranty: One Year",
+        "price": 35,
+        "stock": 25,
+        "category": "Fitness Accessories"
+    },
+    {
+        "name": "Jump Ropes",
+        "description": "Brand: Crossrope\nModel: Get Lean\nMade in: USA\nMaterial: High-Quality PVC\nFeatures: Fast Clip Connection System\nHandles: Ergonomic\nWarranty: 60 Days",
+        "price": 40,
+        "stock": 30,
+        "category": "Fitness Accessories"
+    },
+    {
+        "name": "Ankle Weights",
+        "description": "Brand: All Pro\nModel: Adjustable Ankle Weights\nMade in: USA\nWeight: 5 lbs each\nMaterial: Neoprene\nFeatures: Adjustable Weights, Secure Fit\nWarranty: One Year",
+        "price": 50,
+        "stock": 20,
+        "category": "Fitness Accessories"
+    },
+    {
+        "name": "Gym Bags",
+        "description": "Brand: Under Armour\nModel: Undeniable Duffle 4.0\nMade in: Vietnam\nMaterial: Polyester\nFeatures: Water-Resistant, Multiple Compartments\nSizes: S, M, L\nWarranty: Six Months",
+        "price": 60,
+        "stock": 35,
+        "category": "Fitness Accessories"
+    },
+    {
+        "name": "Massage Guns",
+        "description": "Brand: Theragun\nModel: Elite\nMade in: USA\nAmplitude: 16mm\nSpeed Options: 5\nBattery Life: 2 Hours\nFeatures: OLED Screen, QuietForce Technology\nAttachments: 5\nWarranty: Two Years",
+        "price": 400,
+        "stock": 10,
+        "category": "Recovery and Massage"
+    },
+    {
+        "name": "Foam Rollers",
+        "description": "Brand: TriggerPoint\nModel: GRID\nMade in: USA\nMaterial: EVA Foam\nDimensions: 13\" x 5.5\"\nDesign: Multi-Density, Hollow Core\nUsage: Pre- and Post-Workout Recovery\nWarranty: One Year",
+        "price": 35,
+        "stock": 25,
+        "category": "Recovery and Massage"
+    },
+    {
+        "name": "Massage Balls",
+        "description": "Brand: Kieba\nModel: Massage Lacrosse Balls\nMade in: USA\nMaterial: Rubber\nDiameter: 2.5\"\nFeatures: Trigger Point Therapy\nWarranty: One Year",
+        "price": 10,
+        "stock": 50,
+        "category": "Recovery and Massage"
+    },
+    {
+        "name": "Stretching Straps",
+        "description": "Brand: OPTP\nModel: Stretch Out Strap\nMade in: USA\nMaterial: Nylon\nLength: 6.4 Feet\nFeatures: Multiple Loops, Durable\nWarranty: Lifetime",
+        "price": 15,
+        "stock": 40,
+        "category": "Recovery and Massage"
+    },
+    {
+        "name": "Hot/Cold Therapy Packs",
+        "description": "Brand: FlexiKold\nModel: Gel Ice Pack\nMade in: USA\nMaterial: Gel\nDimensions: 10.5\" x 14.5\"\nFeatures: Reusable, Flexible\nWarranty: One Year",
+        "price": 25,
+        "stock": 30,
+        "category": "Recovery and Massage"
+    },
+    {
+        "name": "Fitness Trackers",
+        "description": "Brand: Fitbit\nModel: Charge 5\nMade in: USA\nDisplay: AMOLED\nBattery Life: Up to 7 Days\nFeatures: Built-In GPS, Heart Rate Monitor, Sleep Tracking\nCompatibility: iOS, Android\nWarranty: One Year",
+        "price": 150,
+        "stock": 20,
+        "category": "Wearable Technology"
+    },
+    {
+        "name": "Heart Rate Monitors",
+        "description": "Brand: Polar\nModel: H10\nMade in: Finland\nConnectivity: Bluetooth, ANT+\nBattery Life: 400 Hours\nFeatures: Waterproof, ECG Accurate\nWarranty: Two Years",
+        "price": 90,
+        "stock": 15,
+        "category": "Wearable Technology"
+    },
+    {
+        "name": "Smartwatches",
+        "description": "Brand: Apple\nModel: Watch Series 6\nMade in: USA\nDisplay: Retina OLED\nBattery Life: 18 Hours\nFeatures: ECG App, Blood Oxygen Sensor\nWarranty: One Year",
+        "price": 400,
+        "stock": 10,
+        "category": "Wearable Technology"
+    },
+    {
+        "name": "GPS Watches",
+        "description": "Brand: Garmin\nModel: Forerunner 945\nMade in: Taiwan\nDisplay: MIP\nBattery Life: Up to 2 Weeks\nFeatures: Full-Color Maps, Music Storage\nWarranty: One Year",
+        "price": 600,
+        "stock": 5,
+        "category": "Wearable Technology"
+    },
+    {
+        "name": "Wearable Resistance Bands",
+        "description": "Brand: ExoTrainers\nModel: ExoBands\nMade in: USA\nResistance Levels: Light, Medium, Heavy\nMaterial: Latex-Free\nFeatures: Wearable, Adjustable\nWarranty: Six Months",
+        "price": 30,
+        "stock": 25,
+        "category": "Wearable Technology"
+    },
+    {
+        "name": "Outdoor Pull-Up Bars",
+        "description": "Brand: GoFit\nModel: Outdoor Power Tower\nMade in: USA\nMaterial: Heavy-Duty Steel\nFeatures: Multiple Grip Positions, Weather-Resistant\nInstallation: Easy Setup\nWarranty: One Year",
+        "price": 300,
+        "stock": 8,
+        "category": "Outdoor Fitness"
+    },
+    {
+        "name": "Portable Resistance Bands",
+        "description": "Brand: WODFitters\nModel: Resistance Bands Set\nMade in: USA\nMaterial: Natural Rubber Latex\nResistance Levels: Light, Medium, Heavy, X-Heavy\nFeatures: Portable, Versatile\nWarranty: One Year",
+        "price": 50,
+        "stock": 30,
+        "category": "Outdoor Fitness"
+    },
+    {
+        "name": "Outdoor Agility Equipment",
+        "description": "Brand: SKLZ\nModel: Quick Ladder\nMade in: USA\nMaterial: Nylon\nLength: 15 Feet\nFeatures: Adjustable Rungs, Carry Bag\nWarranty: One Year",
+        "price": 40,
+        "stock": 20,
+        "category": "Outdoor Fitness"
+    },
+    {
+        "name": "Fitness Trackers with GPS",
+        "description": "Brand: Fitbit\nModel: Charge 5\nMade in: USA\nDisplay: AMOLED\nBattery Life: Up to 7 Days\nFeatures: Built-In GPS, Heart Rate Monitor, Sleep Tracking\nCompatibility: iOS, Android\nWarranty: One Year",
+        "price": 150,
+        "stock": 20,
+        "category": "Outdoor Fitness"
+    }
+]

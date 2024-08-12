@@ -5,6 +5,8 @@ import { useGetAllProductsQuery } from "../../redux/api/baseApi";
 import { useEffect, useState } from "react";
 import { TProduct } from "../../types";
 import { BiSolidRightArrow } from "react-icons/bi";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const FeaturedProducts = () => {
     const { data: products } = useGetAllProductsQuery(undefined);
@@ -29,7 +31,21 @@ const FeaturedProducts = () => {
                 </Link>
             </div>
 
-            <ProductList products={featuredProducts} />
+            {!products?.data ? (
+                <div className="py-6 flex justify-center h-[450px] items-center">
+                    <Spin
+                        className="text-[#FF5252]"
+                        indicator={<LoadingOutlined spin />}
+                        size="large"
+                    />
+                </div>
+            ) : featuredProducts?.length > 0 ? (
+                <ProductList products={featuredProducts} />
+            ) : (
+                <h2 className="text-2xl font-semibold text-center text-[#FF5252]">
+                    No Featured Products
+                </h2>
+            )}
         </div>
     );
 };

@@ -21,6 +21,8 @@ const AddCategoryModal = ({
         await addCategory({ category, image });
         setIsModalOpen(false);
         toast.success("Category Added Successfully");
+        setCategory("");
+        setImage("");
         setIsLoading(false);
     };
 

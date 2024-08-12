@@ -27,8 +27,4 @@ export const navItems = [
         name: "About",
         path: "/about",
     },
-    {
-        name: "Contact",
-        path: "/all-products",
-    },
 ];
